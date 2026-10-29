@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SessionCard from '../components/SessionCard.astro';
-import {profile,sessions,dateLabel} from '../lib/data';
+import {profile,sessions,dateLabel,DEMO_TODAY} from '../lib/data';
 import {getCollection} from 'astro:content';
 const posts=(await getCollection('posts')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
+const latestSession=sessions.find(session=>session.date<=DEMO_TODAY);
 ---
 <Layout title="Home"><section class="cover"><img src="/cover.svg" width="1600" height="700" alt="Illustration provisoire de collines et d’un sentier au coucher du soleil"/><span class="cover-label">PLACEHOLDER VISUEL · LE GOÛT DES DÉTOURS</span></section>
 <div class="home-grid"><div><section class="intro"><p class="eyebrow"><span class="live-dot"></span> UN ESPACE PERSONNEL, EN CONSTRUCTION</p><h1>Salut, moi c’est<br/><em>{profile.name}.</em></h1><p class="lead">{profile.intro}</p><p class="muted small">{profile.note}</p><div class="text-links">{profile.links.map(l=><a href={l.href}>{l.label} ↗</a>)}</div></section>
 <section class="section"><div class="section-heading"><h2>Les dernières notes</h2><span class="eyebrow">01 / JOURNAL</span></div>{posts.map(p=><a class="post-row" href={`/notes/${p.id}/`}><div><span class="eyebrow">{p.data.tag} · DÉMONSTRATION</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div><time datetime={p.data.date.toISOString()}>{dateLabel(p.data.date.toISOString().slice(0,10))} ↗</time></a>)}</section>
-<section class="section"><div class="section-heading"><h2>Dernière séance</h2><a href="/training/">Le carnet ↗</a></div><SessionCard session={sessions[0]!}/><p class="small muted">Données de démonstration entièrement fictives.</p></section></div>
+<section class="section"><div class="section-heading"><h2>Dernière séance</h2><a href="/training/">Le carnet ↗</a></div>{latestSession ? <SessionCard session={latestSession}/> : <p>Aucune séance passée disponible.</p>}<p class="small muted">Données de démonstration entièrement fictives.</p></section></div>
 <aside><section class="aside-section"><p class="eyebrow">EN CE MOMENT</p><h2>Construire.<br/>Bouger.<br/><em>Recommencer.</em></h2><p>Un site qui prend forme, une idée après l’autre.</p><a href="/about/">Un peu plus sur ce lieu ↗</a></section><section class="aside-section"><p class="eyebrow">02 / OBJECTIFS</p><h2>Garder le cap</h2><p class="small muted">Intentions proposées, à personnaliser.</p><ul class="goals">{profile.goals.map((g,i)=><li><span>0{i+1}</span>{g}</li>)}</ul></section><section class="aside-section"><p class="eyebrow">03 / SIDE QUESTS</p><h2>Prendre la tangente</h2><ul class="quests">{profile.quests.map(q=><li><span aria-hidden="true">◇</span>{q}</li>)}</ul><p class="small muted">Des idées de détours, pas encore des accomplissements.</p></section><a class="aside-bottom" href="/photos/">Voir le monde autrement <span>Photos ↗</span></a></aside></div></Layout>
