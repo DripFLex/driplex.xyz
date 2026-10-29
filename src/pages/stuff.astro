@@ -1,0 +1,4 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Stuff"><div class="page-heading"><p class="eyebrow">LES CHOSES / 04</p><h1>Moins, mais <em>bien.</em></h1><p class="lead">Les outils, les lectures et les objets qui trouvent leur place au quotidien.</p></div><ul class="simple-list">{[['Au bureau','Une future sélection d’outils pour créer et travailler.'],['Dans le sac','Le matériel qui accompagne les sorties.'],['Sur la table de nuit','Des lectures et quelques notes dans les marges.']].map(([title,body])=><li><p class="eyebrow">SÉLECTION À VENIR</p><h2>{title}</h2><p>{body}</p></li>)}</ul></Layout>

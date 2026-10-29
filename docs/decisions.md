@@ -1,0 +1,8 @@
+# Décisions
+
+1. **Astro statique** : pages HTML au build, aucun adapter serveur, backend, Worker, PostgreSQL, Docker, API ou VM. Aucun accès Garmin ni identifiant demandé. Le projet se trouve dans son propre dossier ; AthleteOS n’est ni ouvert ni modifié.
+2. **TypeScript strict et validation** : Zod valide les deux JSON, dates civiles, sports et valeurs numériques ; Astro valide le frontmatter Markdown. Une erreur de contenu bloque la compilation. Les totaux sont calculés depuis les séances.
+3. **JavaScript minimal** : seulement les filtres du carnet. Boutons natifs, état `aria-pressed`, compteur annoncé, attribut `hidden`. Aucun framework client. Pas de tracking, police externe, carte externe ou requête de données au runtime.
+4. **Inspiration UX** : https://araujo.zip/ consulté le 29 octobre 2026 dans le navigateur. Navigation compacte, hiérarchie éditoriale, dernières notes, séance et objectifs ont guidé la structure. Identité, textes, code et illustration propres ; aucune image ni asset propriétaire copié. Le placeholder de couverture est une illustration SVG locale, à remplacer par une photo autorisée, et non une véritable photographie.
+5. **Accessibilité** : navigation sémantique, lien d’évitement, page active, focus visible, labels pour les jours, textes alternatifs et support sans JavaScript. Les informations des couleurs du calendrier existent aussi en texte accessible et en infobulles. Aucun mouvement imposé.
+6. **Périmètre V1** : octobre 2026 est une période fixe de démonstration. Photos, carte et sélection d’objets sont volontairement des ébauches soignées. Pas de fausse biographie, de coordonnées inventées ni d’intégration à AthleteOS. L’ajout d’un calendrier multi-mois n’est pas nécessaire à cette V1.

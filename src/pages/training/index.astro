@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SessionCard from '../../components/SessionCard.astro';
+import {sessions,totals,calendar,dateLabel} from '../../lib/data';
+const t=totals(sessions); const days=calendar(sessions);
+---
+<Layout title="Training"><div class="page-heading"><p class="eyebrow">LE CARNET / 01</p><h1>Keep <em>moving.</em></h1><p class="lead">Les sorties, les répétitions et tout ce qui se construit dans la durée.</p></div><p class="demo-notice"><span aria-hidden="true">◈</span> Mode démonstration — toutes les séances et statistiques sont fictives. Aucune connexion Garmin.</p>
+<div class="section-heading"><h2>Octobre 2026</h2><span class="eyebrow">UN MOIS D’EXEMPLE</span></div><div class="stats"><div><span class="eyebrow">DISTANCE RUNNING</span><strong>{t.km.toLocaleString('fr-BE')} <small>km</small></strong></div><div><span class="eyebrow">TEMPS TOTAL</span><strong>{Math.floor(t.minutes/60)}<small>h</small> {t.minutes%60}<small>min</small></strong></div><div><span class="eyebrow">SÉANCES</span><strong>{t.count.toString().padStart(2,'0')}</strong></div><div><span class="eyebrow">RÉPARTITION</span><strong>4 <small>run</small> / 2 <small>force</small></strong></div></div>
+<section class="calendar-section"><div><p class="eyebrow">LA RÉGULARITÉ AVANT TOUT</p><h2>Un jour à la fois.</h2><p>La couleur raconte l’effort.<br/>Les espaces font place au repos.</p><div class="legend"><span class="key"></span> Repos <span class="key running"></span> Running <span class="key strength"></span> Strength</div></div><div class="calendar"><div class="weekdays">{['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map(d=><span>{d}</span>)}</div><div class="days">{days.map(d=><div class:list={['day',{outside:!d.date.startsWith('2026-10'),running:d.sport==='Running',strength:d.sport==='Strength'}]} title={`${dateLabel(d.date)} : ${d.minutes?`${d.minutes} min, ${d.sport}, fictif`:'repos'}`}><span>{d.day}</span><span class="sr-only">{dateLabel(d.date)} : {d.minutes?`${d.minutes} minutes de ${d.sport}, fictif`:'repos'}</span></div>)}</div></div></section>
+<section class="section"><div class="section-heading"><h2>Le fil des séances</h2><span id="session-count" role="status" aria-live="polite">6 séances fictives</span></div><div class="filters" role="group" aria-label="Filtrer les séances" hidden><button type="button" data-filter="All" aria-pressed="true">Tout voir</button><button type="button" data-filter="Running" aria-pressed="false">Running</button><button type="button" data-filter="Strength" aria-pressed="false">Strength</button></div><noscript><p>Toutes les séances sont affichées. Les filtres nécessitent JavaScript.</p></noscript><div id="sessions">{sessions.map(s=><SessionCard session={s}/>)}</div></section></Layout>
+<script>
+ const filters=document.querySelector<HTMLElement>('.filters');
+ if(filters) filters.hidden=false;
+ const buttons=document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+ buttons.forEach(button=>button.addEventListener('click',()=>{
+   const selected=button.dataset.filter;
+   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+   let count=0;
+   document.querySelectorAll<HTMLElement>('#sessions [data-sport]').forEach(card=>{card.hidden=selected!=='All'&&card.dataset.sport!==selected;if(!card.hidden)count++;});
+   const status=document.querySelector('#session-count');if(status)status.textContent=`${count} séances fictives`;
+ }));
+</script>

@@ -1,0 +1,11 @@
+---
+import '../styles/global.css';
+interface Props { title:string; description?:string }
+const {title,description='Le carnet personnel de DripleX. Projets, mouvement et détours.'}=Astro.props;
+const nav=[['/','Home'],['/training/','Training'],['/photos/','Photos'],['/map/','Map'],['/stuff/','Stuff'],['/about/','About'],['/projects/','Projects']];
+---
+<!doctype html><html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · driplex.xyz</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head><body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="header"><a class="brand" href="/">driplex<span>.xyz</span><span class="brand-dot" aria-hidden="true"></span></a><nav aria-label="Navigation principale">{nav.map(([href,label])=><a href={href} aria-current={Astro.url.pathname===href?'page':undefined}>{label}</a>)}</nav></header>
+<main id="main"><slot/></main><footer><a class="brand" href="/">driplex.xyz</a><span>Un carnet en mouvement. <span class="footer-year">© 2026</span></span><a href="#main">Retour en haut ↑</a></footer>
+</body></html>

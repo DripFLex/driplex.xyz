@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {sessions,dateLabel} from '../../lib/data';
+export function getStaticPaths(){return sessions.map(session=>({params:{id:session.id},props:{session}}));}
+const {session:s}=Astro.props;
+---
+<Layout title={s.title}><article class="reading"><a href="/training/">← Toutes les séances</a><div class="page-heading"><p class="eyebrow">{dateLabel(s.date)} · {s.sport}</p><h1>{s.title}</h1></div><p class="demo-notice">Séance entièrement fictive, créée pour la démonstration.</p><dl class="detail-stats"><div><dt>Durée</dt><dd>{s.minutes} min</dd></div>{s.km>0&&<div><dt>Distance</dt><dd>{s.km} km</dd></div>}<div><dt>Effort</dt><dd>{s.effort}</dd></div></dl><h2>Notes de séance</h2><p class="lead">{s.note}</p></article></Layout>

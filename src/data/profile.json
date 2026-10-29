@@ -1,0 +1,8 @@
+{
+  "name": "DripleX",
+  "intro": "Un coin du web pour construire, bouger et garder une trace. Des projets en cours, des kilomètres dehors et les petites choses qui méritent de rester.",
+  "note": "Texte de présentation provisoire, à personnaliser.",
+  "links": [{"label":"Les projets","href":"/projects/"},{"label":"À propos","href":"/about/"}],
+  "goals": ["Courir avec régularité", "Faire une place à la force", "Publier plus souvent"],
+  "quests": ["Créer mon propre coin du web", "Partir une journée sans itinéraire", "Remplir un carnet de photos"]
+}

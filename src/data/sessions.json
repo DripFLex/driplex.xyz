@@ -1,0 +1,8 @@
+[
+ {"id":"morning-loop","date":"2026-10-28","sport":"Running","title":"La boucle du matin","minutes":42,"km":7.2,"effort":"Facile","note":"Exemple fictif : allure tranquille, juste pour prendre l’air."},
+ {"id":"full-body","date":"2026-10-26","sport":"Strength","title":"Revenir aux bases","minutes":55,"km":0,"effort":"Modéré","note":"Exemple fictif : squat 3 × 8, développé 3 × 8, rowing 3 × 10. Charges volontairement omises."},
+ {"id":"long-sunday","date":"2026-10-25","sport":"Running","title":"Prendre le chemin long","minutes":72,"km":12,"effort":"Facile","note":"Exemple fictif : une sortie longue sans objectif de vitesse."},
+ {"id":"upper-body","date":"2026-10-22","sport":"Strength","title":"Un peu plus solide","minutes":45,"km":0,"effort":"Modéré","note":"Exemple fictif : tractions assistées 3 × 6, pompes 3 × 10, gainage 3 × 30 s."},
+ {"id":"tempo","date":"2026-10-20","sport":"Running","title":"Changer de rythme","minutes":38,"km":6.5,"effort":"Soutenu","note":"Exemple fictif : échauffement puis trois blocs de cinq minutes."},
+ {"id":"easy","date":"2026-10-17","sport":"Running","title":"Sans regarder la montre","minutes":30,"km":5,"effort":"Facile","note":"Exemple fictif : une courte sortie de récupération."}
+]
