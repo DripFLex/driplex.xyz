@@ -1,18 +1,18 @@
-# driplex.xyz
+# DRIPLEX — Midnight Navy V2
 
-Première version locale et indépendante : Astro, TypeScript strict, CSS natif, JSON validé avec Zod et billets Markdown validés par Astro Content Collections. Aucun déploiement effectué.
+Évolution de la V1 Astro et TypeScript. Site personnel entièrement statique avec contenus locaux validés ; aucun backend, compte, intégration Garmin/Strava ou infrastructure additionnelle.
 
-## Lancer
+## Lancement local
 
-Prérequis : Node.js 22.12+ (ou 24 LTS), npm.
+Node.js 22.12+ ou 24 LTS et npm. Depuis ce dossier :
 
 ```powershell
-cd C:\Users\DripleX\Documents\Codex\2026-10-29\projet-driplex-xyz-nouveau-site-personnel\outputs\driplex
 npm ci
+$env:ASTRO_TELEMETRY_DISABLED='1'
 npm run dev
 ```
 
-Ouvrir l’adresse locale affichée, normalement http://127.0.0.1:4321.
+Ouvrir http://127.0.0.1:4321. La variable facultative désactive la télémétrie du CLI Astro pour les environnements restreints ; elle ne concerne pas le site.
 
 ```powershell
 npm run lint
@@ -22,21 +22,48 @@ node --test tests/built.test.mjs
 npm run preview
 ```
 
-`build` exécute aussi la vérification Astro/TypeScript. Le résultat est dans `dist/`. Aucun serveur applicatif n’est nécessaire après compilation.
+Le build vérifie aussi Astro/TypeScript. `dist/` contient le site statique ; aucun serveur applicatif nécessaire après compilation. Aucun déploiement automatisé configuré.
 
-## Modifier les contenus
+## Ce qui change
 
-- `src/data/profile.json` : nom, présentation, liens internes, objectifs et side quests.
-- `src/data/sessions.json` : séances fictives, dates ISO, Running ou Strength, durée en minutes, distance en kilomètres. Validation au build dans `src/lib/data.ts`.
-- `src/content/posts/*.md` : titre, date, description, tag et texte des publications. Routes générées sous `/notes/`.
-- `public/cover.svg` : illustration placeholder originale. Pour une photo personnelle : déposer un fichier autorisé dans `public/`, changer l’image et son texte alternatif dans `src/pages/index.astro`. Aucun asset de la référence n’est repris.
-- `src/pages/` : pages secondaires éditables ; aucun contenu personnel réel ni lien social inventé.
-- `src/styles/global.css` : couleurs, dimensions et adaptations responsive.
+- Midnight Navy, tokens CSS centralisés, Space Grotesk et Inter auto-hébergées.
+- Navigation Lucide compacte, tooltips desktop et labels mobiles ; aucun JavaScript pour naviguer.
+- Training : année complète en semaines, filtres All/Running/Strength communs au calendrier, aux statistiques et au journal ; détail d’une journée multi-séances et fiches individuelles.
+- Statistiques calculées depuis le JSON : distance/durée, dernières séances, exercices et éventuels records explicitement renseignés. Les valeurs absentes restent signalées comme non renseignées.
+- Pages éditoriales conservées : Home, About, Photography (`/photos/`), Travel (`/map/`), Projects ; Stuff reste accessible dans le footer. Les URLs V1 sont conservées.
 
-Toutes les séances et les deux billets sont des démonstrations explicitement signalées. La période initiale du calendrier est octobre 2026, à adapter dans `calendar()` et dans la page Training lors d’un changement de jeu de données. Les filtres concernent le fil des séances ; les statistiques et le calendrier conservent le bilan du mois complet.
+## Données de démonstration
 
-## Pages
+Toutes les activités portent obligatoirement `demo: true`. La référence temporelle de la démo est **le 29 octobre 2026**, affichée dans l’interface et exportée comme `DEMO_TODAY`. Les années 2024 à 2027 illustrent l’année bissextile, le passage d’année et le futur. Les dates futures sont désactivées et exclues des statistiques. Pour actualiser la démo, modifier la constante et les années proposées ; ce choix explicite évite qu’une démonstration change selon la date du poste.
 
-Home, Training, Photos, Map, Stuff, About, Projects ; six fiches Training, deux billets et une 404. Sans JavaScript, toutes les séances restent lisibles ; seuls les filtres nécessitent JavaScript. Map est une illustration sans géolocalisation. Photos et Stuff ont une structure initiale, sans fausse collection.
+La couleur mesure uniquement la durée cumulée des séances filtrées du jour : 0 min, moins de 30, moins de 60, moins de 90, puis 90 min ou plus. Ce volume n’est pas une charge physiologique.
 
-Voir `docs/decisions.md` pour les choix d’architecture et `docs/validation.md` pour les vérifications.
+Sans JavaScript, le bilan initial 2026 et ses liens de fiches restent lisibles ; les filtres, les autres années et les interactions du calendrier nécessitent JavaScript.
+
+## Où éditer
+
+| Fichier | Contenu |
+| --- | --- |
+| `src/data/profile.json` | Présentation, liens, objectifs, side quests |
+| `src/data/sessions.json` | Activités structurées et explicitement fictives |
+| `src/lib/data.ts` | Validation Zod/TypeScript et exports de données |
+| `src/lib/training.ts` | Agrégats et calendrier civil UTC, fonctions pures |
+| `src/content/posts/*.md` | Billets Markdown validés et routes `/notes/` |
+| `src/layouts/Layout.astro` | Navigation, polices et structure commune |
+| `src/styles/global.css` | Tokens et style éditorial |
+| `src/styles/training.css` | Mise en page du dashboard sportif |
+| `src/pages/training/` | Dashboard et fiches |
+| `public/cover.svg` | Illustration placeholder originale à remplacer par une photo autorisée |
+
+Photography, Travel et Stuff sont des structures initiales soignées, pas des collections de données réelles. La couverture est une illustration et les billets sont des démonstrations.
+
+## Documentation et revue
+
+- [Design system](docs/design-system.md)
+- [Modèle et calendrier](docs/training.md)
+- [Décisions techniques](docs/decisions.md)
+- [Rapport QA indépendant](docs/qa-v2.md)
+- [Vérifications et commandes](docs/validation.md)
+- [Fichiers modifiés](docs/files.md)
+
+La V1 est conservée dans le commit de base `main`. La branche `feat/midnight-navy-training-v2` sépare identité/navigation, Training/tests, puis documentation/QA. Revue humaine avant fusion ; aucun déploiement et aucune modification d’AthleteOS.

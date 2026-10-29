@@ -1,40 +1,32 @@
-# Fichiers créés
+# Fichiers modifiés — V2
 
-Projet neuf : tous les fichiers ci-dessous ont été créés pour cette V1. Aucun fichier AthleteOS modifié.
+Évolution du projet V1 existant. Aucun fichier du dépôt AthleteOS modifié.
 
-```text
-.gitignore
-astro.config.mjs
-docs/decisions.md
-docs/validation.md
-eslint.config.mjs
-package-lock.json
-package.json
-public/cover.svg
-public/favicon.svg
-README.md
-src/components/SessionCard.astro
-src/content.config.ts
-src/content/posts/a-place-of-my-own.md
-src/content/posts/regularite.md
-src/data/profile.json
-src/data/sessions.json
-src/layouts/Layout.astro
-src/lib/data.ts
-src/pages/404.astro
-src/pages/about.astro
-src/pages/index.astro
-src/pages/map.astro
-src/pages/notes/[id].astro
-src/pages/photos.astro
-src/pages/projects.astro
-src/pages/stuff.astro
-src/pages/training/[id].astro
-src/pages/training/index.astro
-src/styles/global.css
-tests/built.test.mjs
-tests/data.test.ts
-tsconfig.json
-```
+## Identité et navigation
 
-Générés : dist/ (site statique), .astro/ (types/cache), node_modules/ (dépendances).
+- `astro.config.mjs` : aperçu sans barre d’outils de développement.
+- `package.json`, `package-lock.json` : polices Fontsource locales et SVG Lucide.
+- `src/layouts/Layout.astro` : polices/préchargement, navigation iconographique et accessibilité.
+- `src/styles/global.css` : palette centralisée, typographies et responsive Midnight Navy.
+- `public/cover.svg`, `public/favicon.svg` : placeholders harmonisés.
+- `src/pages/photos.astro`, `src/pages/map.astro` : noms Photography et Travel, routes conservées.
+
+## Training et tests
+
+- `src/data/sessions.json` : 49 activités explicitement fictives, dont multi-séances, année passée et 29 février.
+- `src/lib/data.ts` : schéma d’activité et validation locale.
+- `src/lib/training.ts` : nouveau module de calculs purs sans Zod client.
+- `src/components/SessionCard.astro` : données facultatives et allure.
+- `src/pages/index.astro` : dernière activité passée selon la référence démo.
+- `src/pages/training/index.astro` : graphe annuel, contrôles, jour, statistiques et journal synchronisés.
+- `src/pages/training/[id].astro` : fiches Running et Strength.
+- `src/styles/training.css` : nouveau style du dashboard.
+- `tests/data.test.ts` : agrégations, validation, calendrier et métriques.
+- `tests/qa.test.ts` : tests indépendants, contrastes, années1900–2100, filtres et absence de motifs de secrets.
+- `tests/built.test.mjs` : nombre dynamique de pages et références locales.
+
+## Documentation et preuves
+
+`README.md`, `docs/design-system.md`, `docs/training.md`, `docs/decisions.md`, `docs/validation.md`, `docs/qa-v2.md`, `docs/files.md` et quatre captures dans `docs/captures/`.
+
+Générés et ignorés : `dist/`, `.astro/`, `node_modules/`.
