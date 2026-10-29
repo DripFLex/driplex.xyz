@@ -1,22 +1,97 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import SessionCard from '../../components/SessionCard.astro';
-import {sessions,totals,calendar,dateLabel} from '../../lib/data';
-const t=totals(sessions); const days=calendar(sessions);
+import { sessions, filterSessions, sportStats, calendar, fullDateLabel, durationLabel, DEMO_TODAY } from '../../lib/data';
+import '../../styles/training.css';
+const initial = filterSessions(sessions, 2026);
+const stats = sportStats(initial);
+const days = calendar(sessions, 2026);
+const months = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
+const latestDay = initial[0]?.date ?? DEMO_TODAY;
+const activeDays = days.filter(day=>day.minutes>0).length;
 ---
-<Layout title="Training"><div class="page-heading"><p class="eyebrow">LE CARNET / 01</p><h1>Keep <em>moving.</em></h1><p class="lead">Les sorties, les répétitions et tout ce qui se construit dans la durée.</p></div><p class="demo-notice"><span aria-hidden="true">◈</span> Mode démonstration — toutes les séances et statistiques sont fictives. Aucune connexion Garmin.</p>
-<div class="section-heading"><h2>Octobre 2026</h2><span class="eyebrow">UN MOIS D’EXEMPLE</span></div><div class="stats"><div><span class="eyebrow">DISTANCE RUNNING</span><strong>{t.km.toLocaleString('fr-BE')} <small>km</small></strong></div><div><span class="eyebrow">TEMPS TOTAL</span><strong>{Math.floor(t.minutes/60)}<small>h</small> {t.minutes%60}<small>min</small></strong></div><div><span class="eyebrow">SÉANCES</span><strong>{t.count.toString().padStart(2,'0')}</strong></div><div><span class="eyebrow">RÉPARTITION</span><strong>4 <small>run</small> / 2 <small>force</small></strong></div></div>
-<section class="calendar-section"><div><p class="eyebrow">LA RÉGULARITÉ AVANT TOUT</p><h2>Un jour à la fois.</h2><p>La couleur raconte l’effort.<br/>Les espaces font place au repos.</p><div class="legend"><span class="key"></span> Repos <span class="key running"></span> Running <span class="key strength"></span> Strength</div></div><div class="calendar"><div class="weekdays">{['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map(d=><span>{d}</span>)}</div><div class="days">{days.map(d=><div class:list={['day',{outside:!d.date.startsWith('2026-10'),running:d.sport==='Running',strength:d.sport==='Strength'}]} title={`${dateLabel(d.date)} : ${d.minutes?`${d.minutes} min, ${d.sport}, fictif`:'repos'}`}><span>{d.day}</span><span class="sr-only">{dateLabel(d.date)} : {d.minutes?`${d.minutes} minutes de ${d.sport}, fictif`:'repos'}</span></div>)}</div></div></section>
-<section class="section"><div class="section-heading"><h2>Le fil des séances</h2><span id="session-count" role="status" aria-live="polite">6 séances fictives</span></div><div class="filters" role="group" aria-label="Filtrer les séances" hidden><button type="button" data-filter="All" aria-pressed="true">Tout voir</button><button type="button" data-filter="Running" aria-pressed="false">Running</button><button type="button" data-filter="Strength" aria-pressed="false">Strength</button></div><noscript><p>Toutes les séances sont affichées. Les filtres nécessitent JavaScript.</p></noscript><div id="sessions">{sessions.map(s=><SessionCard session={s}/>)}</div></section></Layout>
+<Layout title="Training" description="Le carnet sportif de démonstration DRIPLEX. Running, Strength et une année de mouvement.">
+ <div class="page-heading training-heading"><div><p class="eyebrow">TRAINING / LE MOUVEMENT AU FIL DES JOURS</p><h1>Show up.<br/><em>Keep moving.</em></h1><p class="lead">Des kilomètres, des répétitions. Une trace des petits efforts qui s’additionnent.</p></div><div class="training-heading-note"><span class="training-pulse" aria-hidden="true"></span> LE CARNET SPORTIF<span>Running & Strength</span></div></div>
+ <p class="demo-notice">Démonstration — toutes les activités sont fictives. Référence temporelle figée au 29 octobre 2026. Aucune connexion Garmin ou Strava.</p>
+ <section class="training-annual" aria-labelledby="annual-title">
+  <div class="training-toolbar"><div><p class="eyebrow">LA RÉGULARITÉ, EN UN REGARD</p><h2 id="annual-title">Une année en mouvement</h2></div><label class="year-control" hidden>Année <select id="training-year" aria-label="Année du calendrier">{[2024,2025,2026,2027].map(year=><option selected={year===2026} value={year}>{year}</option>)}</select></label></div>
+  <div class="training-controls" hidden><div class="training-filters" role="group" aria-label="Discipline"><button type="button" data-filter="All" aria-pressed="true">All</button><button type="button" data-filter="Running" aria-pressed="false">Running</button><button type="button" data-filter="Strength" aria-pressed="false">Strength</button></div><p id="graph-summary" role="status" aria-live="polite">{initial.length} séances · {activeDays} jours actifs · 2026</p></div>
+  <p id="graph-instructions" class="sr-only">Calendrier : flèches haut et bas pour changer de jour, gauche et droite pour changer de semaine. Entrée ou espace pour consulter les séances. Les jours futurs sont désactivés.</p>
+  <div class="contribution-scroll" tabindex="0" role="region" aria-label="Calendrier annuel défilant horizontalement"><div class="contribution-content"><div class="contribution-months" aria-hidden="true">{months.map((month,index)=>{const day=days.find(day=>day.date===`2026-${String(index+1).padStart(2,'0')}-01`);return <span style={`grid-column:${(day?.week??0)+1}`}>{month}</span>;})}</div><div class="contribution-body"><div class="contribution-weekdays" aria-hidden="true">{['Lun','','Mer','','Ven','',''].map(day=><span>{day}</span>)}</div><div id="contribution-grid" class="contribution-grid" role="group" aria-label="Journées de l’année 2026" aria-describedby="graph-instructions">{days.map(day=>day.outside?<span class="contribution-padding" aria-hidden="true"></span>:<button type="button" class="contribution-day" data-date={day.date} data-level={day.level} disabled={day.future} tabindex={day.date===latestDay?0:-1} aria-pressed={day.date===latestDay} aria-label={`${fullDateLabel(day.date)} : ${day.future?'date future':`${day.activities.length} séance(s), ${day.minutes} minutes, démonstration`}`} title={`${fullDateLabel(day.date)} · ${day.future?'Date future':`${day.minutes} min · ${day.activities.length} séance(s) fictive(s)`}`}></button>)}</div></div></div></div>
+  <div class="contribution-footer"><p id="day-preview">{fullDateLabel(latestDay)} · Sélectionnez un jour pour consulter les séances.</p><div class="contribution-legend"><span>Moins</span>{[0,1,2,3,4].map(level=><span class="legend-cell" data-level={level} title={['0 min','1–29 min','30–59 min','60–89 min','90 min et plus'][level]}></span>)}<span>Plus</span></div></div>
+  <label class="training-date-control" hidden>Consulter une journée <input id="training-date" type="date" min="2026-01-01" max={DEMO_TODAY} value={latestDay}/></label>
+  <p class="training-fineprint">Couleurs = durée cumulée : 0 · 1–29 · 30–59 · 60–89 · 90+ min. Ce volume ne mesure pas la charge physiologique. Les jours futurs sont indisponibles.</p>
+ </section>
+ <section class="day-detail-panel" aria-labelledby="day-title"><div class="section-heading"><h2 id="day-title">{fullDateLabel(latestDay)}</h2><span class="eyebrow">DÉTAIL DU JOUR · FICTIF</span></div><div id="day-details" aria-live="polite">{initial.filter(session=>session.date===latestDay).map(session=><SessionCard session={session}/>)}</div></section>
+ <section class="training-overview" aria-labelledby="overview-title"><div class="section-heading"><h2 id="overview-title">Le bilan <span id="stats-year">2026</span></h2><span id="stats-scope" class="eyebrow">ALL · DÉMONSTRATION</span></div><div class="training-stat-grid"><article class="training-stat"><p class="eyebrow">DISTANCE RUNNING</p><strong><span data-stat="running-km">{stats.running.km.toLocaleString('fr-BE')}</span><small> km</small></strong><p><span data-stat="running-count">{stats.running.count}</span> sorties · <span data-stat="running-duration">{durationLabel(stats.running.minutes)}</span></p></article><article class="training-stat"><p class="eyebrow">SÉANCES STRENGTH</p><strong data-stat="strength-count">{stats.strength.count}</strong><p><span data-stat="strength-duration">{durationLabel(stats.strength.minutes)}</span> au total</p></article><article class="training-stat"><p class="eyebrow">TEMPS EN MOUVEMENT</p><strong data-stat="all-duration">{durationLabel(stats.all.minutes)}</strong><p><span data-stat="all-count">{stats.all.count}</span> séances · toutes fictives</p></article></div><div class="training-sport-details"><article><h3>Running</h3><p>Dernière sortie : <span data-stat="running-latest">{stats.running.latest?`${stats.running.latest.title} · ${fullDateLabel(stats.running.latest.date)}`:'Aucune séance'}</span></p><p>Records personnels : <span data-stat="running-records">Non renseignés</span></p></article><article><h3>Strength</h3><p>Dernière séance : <span data-stat="strength-latest">{stats.strength.latest?`${stats.strength.latest.title} · ${fullDateLabel(stats.strength.latest.date)}`:'Aucune séance'}</span></p><p>Exercices : <span data-stat="strength-exercises">{stats.strength.exercises.join(', ')||'Non renseignés'}</span></p></article></div></section>
+ <section class="section training-journal"><div class="section-heading"><h2>Le journal d’activités</h2><span id="session-count" role="status" aria-live="polite">{initial.length} séances de démonstration</span></div><div id="sessions">{sessions.map(session=><div class="journal-entry" data-date={session.date} data-sport={session.sport} hidden={!initial.includes(session)}><SessionCard session={session}/></div>)}</div><p id="journal-empty" hidden>Aucune séance pour cette année et cette discipline.</p><noscript><p>Sans JavaScript, le bilan 2026 et toutes ses fiches restent disponibles. Les filtres et les autres années nécessitent JavaScript.</p></noscript></section>
+</Layout>
 <script>
- const filters=document.querySelector<HTMLElement>('.filters');
- if(filters) filters.hidden=false;
+ import { calendar, filterSessions, sportStats, fullDateLabel, durationLabel, paceLabel, DEMO_TODAY } from '../../lib/training';
+ import type { Discipline, Session } from '../../lib/data';
+ import rawSessions from '../../data/sessions.json';
+ const sessions=(rawSessions as Session[]).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+ let year=2026;
+ let discipline:Discipline='All';
+ let selected=filterSessions(sessions,year)[0]?.date??DEMO_TODAY;
+ const grid=document.querySelector<HTMLElement>('#contribution-grid')!;
  const buttons=document.querySelectorAll<HTMLButtonElement>('[data-filter]');
- buttons.forEach(button=>button.addEventListener('click',()=>{
-   const selected=button.dataset.filter;
-   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-   let count=0;
-   document.querySelectorAll<HTMLElement>('#sessions [data-sport]').forEach(card=>{card.hidden=selected!=='All'&&card.dataset.sport!==selected;if(!card.hidden)count++;});
-   const status=document.querySelector('#session-count');if(status)status.textContent=`${count} séances fictives`;
- }));
+ const yearSelect=document.querySelector<HTMLSelectElement>('#training-year')!;
+ const dayDetails=document.querySelector<HTMLElement>('#day-details')!;
+ const months=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
+ const dateInput=document.querySelector<HTMLInputElement>('#training-date')!;
+ document.querySelectorAll<HTMLElement>('.training-controls,.year-control,.training-date-control').forEach(el=>el.hidden=false);
+ function text(selector:string,value:string){const element=document.querySelector(selector);if(element)element.textContent=value;}
+ function sessionDescription(session:Session){return `${session.sport} · ${session.minutes} min${session.sport==='Running'&&session.km?` · ${session.km.toLocaleString('fr-BE')} km · ${paceLabel(session)}`:''}`;}
+ function showDay(date:string){
+  selected=date;dateInput.value=date;
+  grid.querySelectorAll<HTMLButtonElement>('.contribution-day').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.date===date));button.tabIndex=button.dataset.date===date?0:-1;});
+  text('#day-title',fullDateLabel(date));
+  const activities=filterSessions(sessions,year,discipline).filter(session=>session.date===date);
+  dayDetails.replaceChildren();
+  if(!activities.length){const empty=document.createElement('p');empty.className='training-empty';empty.textContent=date>DEMO_TODAY?'Cette date est future. Aucun entraînement enregistré.':'Aucune séance pour ce jour et ce filtre. Le repos fait aussi partie du chemin.';dayDetails.append(empty);return;}
+  activities.forEach(session=>{
+   const article=document.createElement('article');article.className='daily-activity';
+   const meta=document.createElement('p');meta.className='eyebrow';meta.textContent=`${sessionDescription(session)} · DÉMONSTRATION`;
+   const heading=document.createElement('h3');const link=document.createElement('a');link.href=`/training/${session.id}/`;link.textContent=session.title;heading.append(link);article.append(meta,heading);
+   if(session.sport==='Strength'&&session.exercises?.length){const list=document.createElement('ul');session.exercises.forEach(exercise=>{const item=document.createElement('li');item.textContent=`${exercise.name} · ${exercise.sets} × ${exercise.reps?`${exercise.reps} rép.`:`${exercise.seconds} s`}${exercise.kg!==undefined?` · ${exercise.kg} kg`:' · charge non renseignée'}`;list.append(item);});article.append(list);}
+   if(session.note){const note=document.createElement('p');note.textContent=session.note;article.append(note);}
+   dayDetails.append(article);
+  });
+ }
+ function render(){
+  const filtered=filterSessions(sessions,year,discipline);
+  const days=calendar(sessions,year,DEMO_TODAY,discipline);
+  grid.setAttribute('aria-label',`Journées de l’année ${year}`);
+  grid.replaceChildren();
+  days.forEach(day=>{
+   if(day.outside){const padding=document.createElement('span');padding.className='contribution-padding';padding.setAttribute('aria-hidden','true');grid.append(padding);return;}
+   const button=document.createElement('button');button.type='button';button.className='contribution-day';button.dataset.date=day.date;button.dataset.level=String(day.level);button.disabled=day.future;button.tabIndex=-1;
+   const description=`${fullDateLabel(day.date)} : ${day.future?'date future':`${day.activities.length} séance(s), ${day.minutes} minutes, démonstration`}`;button.setAttribute('aria-label',description);button.title=description;button.setAttribute('aria-pressed','false');
+   const preview=()=>text('#day-preview',description);
+   button.addEventListener('mouseenter',preview);button.addEventListener('focus',preview);button.addEventListener('click',()=>showDay(day.date));grid.append(button);
+  });
+  const monthRow=document.querySelector('.contribution-months')!;monthRow.replaceChildren();
+  months.forEach((month,index)=>{const item=document.createElement('span');item.textContent=month;item.style.gridColumn=String((days.find(day=>day.date===`${year}-${String(index+1).padStart(2,'0')}-01`)?.week??0)+1);monthRow.append(item);});
+  if(!selected.startsWith(`${year}-`)||selected>DEMO_TODAY)selected=filtered[0]?.date??`${year}-01-01`;
+  dateInput.min=`${year}-01-01`;dateInput.max=year<Number(DEMO_TODAY.slice(0,4))?`${year}-12-31`:DEMO_TODAY;dateInput.disabled=year>Number(DEMO_TODAY.slice(0,4));
+  showDay(selected);
+  const stats=sportStats(filtered);
+  const data:Record<string,string>={'running-km':stats.running.km.toLocaleString('fr-BE'),'running-count':String(stats.running.count),'running-duration':durationLabel(stats.running.minutes),'strength-count':String(stats.strength.count),'strength-duration':durationLabel(stats.strength.minutes),'all-duration':durationLabel(stats.all.minutes),'all-count':String(stats.all.count),'running-latest':stats.running.latest?`${stats.running.latest.title} · ${fullDateLabel(stats.running.latest.date)}`:'Aucune séance','strength-latest':stats.strength.latest?`${stats.strength.latest.title} · ${fullDateLabel(stats.strength.latest.date)}`:'Aucune séance','running-records':stats.running.records.length?stats.running.records.map(record=>`${record.label} : ${record.seconds} s (démo)`).join(', '):'Non renseignés','strength-exercises':stats.strength.exercises.join(', ')||'Non renseignés'};
+  Object.entries(data).forEach(([key,value])=>text(`[data-stat="${key}"]`,value));
+  text('#stats-year',String(year));text('#stats-scope',`${discipline.toUpperCase()} · DÉMONSTRATION`);text('#graph-summary',`${filtered.length} séances · ${days.filter(day=>day.minutes>0).length} jours actifs · ${year}`);text('#session-count',`${filtered.length} séances de démonstration`);
+  document.querySelectorAll<HTMLElement>('.journal-entry').forEach(entry=>{entry.hidden=!filtered.some(session=>session.date===entry.dataset.date&&session.sport===entry.dataset.sport);});
+  document.querySelector<HTMLElement>('#journal-empty')!.hidden=filtered.length>0;
+ }
+ buttons.forEach(button=>button.addEventListener('click',()=>{discipline=button.dataset.filter as Discipline;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();}));
+ yearSelect.addEventListener('change',()=>{year=Number(yearSelect.value);render();});
+ dateInput.addEventListener('change',()=>{if(dateInput.validity.valid&&dateInput.value.startsWith(`${year}-`)&&dateInput.value<=DEMO_TODAY)showDay(dateInput.value);});
+ grid.addEventListener('keydown',event=>{
+  const target=event.target as HTMLButtonElement;
+  if(!target.matches('.contribution-day'))return;
+  const delta:Record<string,number>={ArrowUp:-1,ArrowDown:1,ArrowLeft:-7,ArrowRight:7};
+  if(!(event.key in delta)&&event.key!=='Home'&&event.key!=='End')return;
+  event.preventDefault();const days=Array.from(grid.querySelectorAll<HTMLButtonElement>('.contribution-day:not(:disabled)'));const index=days.indexOf(target);const next=event.key==='Home'?0:event.key==='End'?days.length-1:Math.max(0,Math.min(days.length-1,index+delta[event.key]!));days.forEach(day=>day.tabIndex=-1);if(days[next]){days[next]!.tabIndex=0;days[next]!.focus();}
+ });
+ render();
 </script>
