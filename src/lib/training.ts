@@ -18,9 +18,9 @@ export function volumeLevel(minutes: number): 0 | 1 | 2 | 3 | 4 {
   return minutes <= 0 ? 0 : minutes < 30 ? 1 : minutes < 60 ? 2 : minutes < 90 ? 3 : 4;
 }
 export function calendar(items: Session[], year = 2026, today = DEMO_TODAY, discipline: Discipline = 'All') {
-  if (!Number.isInteger(year) || year < 1900 || year > 2100) throw new RangeError('Année hors limites');
+  if (!Number.isInteger(year) || year < 1900 || year > 2100) throw new RangeError('Year out of range');
   const reference = new Date(`${today}T00:00:00Z`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(today) || Number.isNaN(reference.getTime()) || reference.toISOString().slice(0, 10) !== today) throw new RangeError('Date de référence invalide');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(today) || Number.isNaN(reference.getTime()) || reference.toISOString().slice(0, 10) !== today) throw new RangeError('Invalid reference date');
   const first = new Date(Date.UTC(year, 0, 1));
   const last = new Date(Date.UTC(year, 11, 31));
   const offset = (first.getUTCDay() + 6) % 7;
@@ -36,8 +36,8 @@ export function calendar(items: Session[], year = 2026, today = DEMO_TODAY, disc
     return { date, day: Number(date.slice(-2)), outside, future: date > today, activities, minutes, level: volumeLevel(minutes), week: Math.floor(index / 7), weekday: index % 7 };
   });
 }
-export function dateLabel(date: string) { return new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
-export function fullDateLabel(date: string) { return new Intl.DateTimeFormat('fr-BE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
+export function dateLabel(date: string) { return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
+export function fullDateLabel(date: string) { return new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
 export function durationLabel(minutes: number) { return minutes >= 60 ? `${Math.floor(minutes / 60)} h ${Math.round(minutes % 60).toString().padStart(2, '0')}` : `${minutes} min`; }
 export function paceLabel(session: Session) {
   if (session.sport !== 'Running' || !session.km) return undefined;

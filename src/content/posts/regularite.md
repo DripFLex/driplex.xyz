@@ -1,9 +1,9 @@
 ---
-title: Faire de la place au mouvement
+title: Making room for movement
 date: 2026-10-24
-description: Quelques notes provisoires sur la régularité et le plaisir de sortir.
+description: A few draft notes on consistency and the pleasure of getting outside.
 tag: Training
 ---
-**Billet fictif de démonstration.** Ce texte ne décrit pas une expérience sportive réelle.
+**Fictional demo post.** This text does not describe a real training experience.
 
-Le carnet d’entraînement sert d’abord à regarder le chemin parcouru. Quelques sorties faciles, une séance de force et du temps pour récupérer : une petite routine à adapter à son propre quotidien.
+The training journal is a way to look back at the ground covered. A few easy runs, a strength session and time to recover: a small routine to fit around everyday life.

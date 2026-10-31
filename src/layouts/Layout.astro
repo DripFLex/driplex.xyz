@@ -8,14 +8,18 @@ import '@fontsource/space-grotesk/latin-500.css';
 import '@fontsource/space-grotesk/latin-600.css';
 import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import spaceMedium from '@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2?url';
-import { House, Activity, Camera, Earth as Globe2, Terminal, UserRound } from '@lucide/astro';
+import SiteNav from '../components/SiteNav.astro';
 interface Props { title:string; description?:string }
-const {title,description='Le carnet personnel de DripleX. Projets, mouvement et détours.'}=Astro.props;
-const nav=[{href:'/',label:'Home',icon:House},{href:'/training/',label:'Training',icon:Activity},{href:'/photos/',label:'Photography',icon:Camera},{href:'/map/',label:'Travel',icon:Globe2},{href:'/projects/',label:'Projects',icon:Terminal},{href:'/about/',label:'About',icon:UserRound}];
+const {title,description='The personal journal of DripleX. Projects, movement and little detours.'}=Astro.props;
 ---
-<!doctype html><html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · driplex.xyz</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href={spaceMedium} as="font" type="font/woff2" crossorigin="anonymous"/></head><body>
-<a class="skip" href="#main">Aller au contenu</a>
-<header class="header"><a class="brand" href="/" aria-label="driplex.xyz — Home">driplex<span>.xyz</span><span class="brand-dot" aria-hidden="true"></span></a><nav class="main-nav" aria-label="Navigation principale">{nav.map(({href,label,icon:Icon})=><a href={href} class="nav-link" aria-label={label} aria-current={(href==='/'?Astro.url.pathname==='/':Astro.url.pathname.startsWith(href))?'page':undefined}><Icon size={19} stroke-width={1.6} aria-hidden="true"/><span class="nav-label" aria-hidden="true">{label}</span></a>)}</nav></header>
-<main id="main" tabindex="-1"><slot/></main><footer><a class="brand" href="/">driplex.xyz</a><span>Un carnet en mouvement. <span class="footer-year">© 2026</span></span><div class="footer-links"><a href="/stuff/">Stuff</a><a href="#main">Retour en haut ↑</a></div></footer>
-</body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · driplex.xyz</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href={spaceMedium} as="font" type="font/woff2" crossorigin="anonymous"/></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="site-shell"><header class:list={["header", { "header-home": Astro.url.pathname === "/" }]}><a class="brand" href="/" aria-label="driplex.xyz — Home">driplex<span>.xyz</span><span class="brand-dot" aria-hidden="true"></span></a><SiteNav/></header>
+<main id="main" class:list={{'home-main':Astro.url.pathname === '/'}} tabindex="-1"><slot/></main><footer class:list={{'footer-home':Astro.url.pathname === '/'}}><a class="brand" href="/">driplex.xyz</a><span>A journal in motion. <span class="footer-year">© 2026</span></span><div class="footer-links"><a href="/stuff/">Stuff</a><a href="#main">Back to top ↑</a></div></footer>
+</div></body></html>
 
+<style>
+@media(min-width:1024px){.site-shell{margin-left:112px}.header-home{min-height:64px}.header-home>.brand{visibility:hidden}}
+@media(max-width:1023px){.header{min-height:96px;flex-wrap:nowrap;padding:20px 0;gap:16px}}
+@media(max-width:620px){.header-home,.home-main,.footer-home{width:calc(100% - 48px)}}
+</style>

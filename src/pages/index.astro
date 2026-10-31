@@ -1,13 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SessionCard from '../components/SessionCard.astro';
-import {profile,sessions,dateLabel,DEMO_TODAY} from '../lib/data';
+import HomeIntro from '../components/HomeIntro.astro';
+import HomeChapter from '../components/HomeChapter.astro';
+import HomeEntry from '../components/HomeEntry.astro';
+import {profile,sessions,DEMO_TODAY} from '../lib/data';
 import {getCollection} from 'astro:content';
 const posts=(await getCollection('posts')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
 const latestSession=sessions.find(session=>session.date<=DEMO_TODAY);
 ---
-<Layout title="Home"><section class="cover"><img src="/cover.svg" width="1600" height="700" alt="Illustration provisoire de collines et d’un sentier au coucher du soleil"/><span class="cover-label">PLACEHOLDER VISUEL · LE GOÛT DES DÉTOURS</span></section>
-<div class="home-grid"><div><section class="intro"><p class="eyebrow"><span class="live-dot"></span> UN ESPACE PERSONNEL, EN CONSTRUCTION</p><h1>Salut, moi c’est<br/><em>{profile.name}.</em></h1><p class="lead">{profile.intro}</p><p class="muted small">{profile.note}</p><div class="text-links">{profile.links.map(l=><a href={l.href}>{l.label} ↗</a>)}</div></section>
-<section class="section"><div class="section-heading"><h2>Les dernières notes</h2><span class="eyebrow">01 / JOURNAL</span></div>{posts.map(p=><a class="post-row" href={`/notes/${p.id}/`}><div><span class="eyebrow">{p.data.tag} · DÉMONSTRATION</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div><time datetime={p.data.date.toISOString()}>{dateLabel(p.data.date.toISOString().slice(0,10))} ↗</time></a>)}</section>
-<section class="section"><div class="section-heading"><h2>Dernière séance</h2><a href="/training/">Le carnet ↗</a></div>{latestSession ? <SessionCard session={latestSession}/> : <p>Aucune séance passée disponible.</p>}<p class="small muted">Données de démonstration entièrement fictives.</p></section></div>
-<aside><section class="aside-section"><p class="eyebrow">EN CE MOMENT</p><h2>Construire.<br/>Bouger.<br/><em>Recommencer.</em></h2><p>Un site qui prend forme, une idée après l’autre.</p><a href="/about/">Un peu plus sur ce lieu ↗</a></section><section class="aside-section"><p class="eyebrow">02 / OBJECTIFS</p><h2>Garder le cap</h2><p class="small muted">Intentions proposées, à personnaliser.</p><ul class="goals">{profile.goals.map((g,i)=><li><span>0{i+1}</span>{g}</li>)}</ul></section><section class="aside-section"><p class="eyebrow">03 / SIDE QUESTS</p><h2>Prendre la tangente</h2><ul class="quests">{profile.quests.map(q=><li><span aria-hidden="true">◇</span>{q}</li>)}</ul><p class="small muted">Des idées de détours, pas encore des accomplissements.</p></section><a class="aside-bottom" href="/photos/">Voir le monde autrement <span>Photos ↗</span></a></aside></div></Layout>
+<Layout title="Home">
+  <HomeIntro/>
+  <div class="home-journal">
+    <HomeChapter id="home-now" label="01 / RIGHT NOW" title={'Build.\nMove.\nRepeat.'} compact>
+      <p>A site taking shape, one idea at a time.</p>
+      <a class="chapter-link" href="/about/">A little more about this place <span aria-hidden="true">↗</span></a>
+    </HomeChapter>
+    <HomeChapter id="home-making" label="02 / MAKING" title="A site of my own.">
+      <HomeEntry meta="PROJECT / IN PROGRESS" title="driplex.xyz" description="The site you’re exploring. A personal journal built with Astro, TypeScript and local content." href="/projects/" linkLabel="View project"/>
+    </HomeChapter>
+    <HomeChapter id="home-moving" label="03 / MOVING" title="Finding my stride.">
+      {latestSession ? <HomeEntry date={latestSession.date} meta={`${latestSession.sport} · DEMO`} title={latestSession.title} description={`${latestSession.effort} · ${latestSession.minutes} min. Entirely fictional demo data.`} href={`/training/${latestSession.id}/`} linkLabel="View session"/> : <p>No past sessions available.</p>}
+    </HomeChapter>
+    <HomeChapter id="home-notes" label="04 / THE JOURNAL" title="A few notes.">
+      {posts.map(post => <HomeEntry date={post.data.date.toISOString().slice(0,10)} meta={`${post.data.tag} · DEMO`} title={post.data.title} description={post.data.description} href={`/notes/${post.id}/`} linkLabel="Read note"/>)}
+    </HomeChapter>
+    <section class="home-intentions" aria-label="Goals and interests">
+      <div>
+        <p class="intentions-label">GOALS TO MAKE MY OWN</p>
+        <h2>Stay the course</h2>
+        <ul>{profile.goals.map(goal => <li>{goal}</li>)}</ul>
+      </div>
+      <div>
+        <p class="intentions-label">SIDE QUESTS / LITTLE DETOURS</p>
+        <h2>Take a detour</h2>
+        <ul>{profile.quests.map(quest => <li>{quest}</li>)}</ul>
+        <p class="intentions-note">Ideas to explore, not achievements just yet.</p>
+        <a href="/photos/">See things differently <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </div>
+</Layout>
+<style>
+  .home-intentions{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding:64px 0 0}
+  .home-intentions>div{min-width:0}
+  .intentions-label{font-size:10px;line-height:1.7;letter-spacing:1.1px;color:var(--text-secondary);margin:0 0 22px}
+  .home-intentions h2{font-size:28px;line-height:1.35;font-weight:400;letter-spacing:-.6px;margin:0 0 20px}
+  .home-intentions ul{padding:0;list-style:none;margin:0}
+  .home-intentions li{font-size:15px;line-height:1.8;color:var(--text-secondary);margin:0}
+  .intentions-note{font-size:12px;line-height:1.75;color:var(--text-secondary);margin:22px 0 9px;max-width:390px}
+  .home-intentions a{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:12px;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:5px}
+  .home-intentions a:hover,.home-intentions a:focus-visible{text-decoration-color:currentColor}
+  @media(max-width:800px){.home-intentions{display:block;padding-top:40px}.home-intentions>div+div{margin-top:48px}.intentions-label{margin-bottom:18px}.home-intentions h2{font-size:28px}.home-intentions li{font-size:15px}}
+</style>

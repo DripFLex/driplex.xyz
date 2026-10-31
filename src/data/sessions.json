@@ -3,22 +3,22 @@
     "id": "morning-loop",
     "date": "2026-10-28",
     "sport": "Running",
-    "title": "La boucle du matin",
+    "title": "The morning loop",
     "minutes": 42,
     "km": 7.2,
-    "effort": "Facile",
-    "note": "Exemple fictif : allure tranquille, juste pour prendre l’air.",
+    "effort": "Easy",
+    "note": "Fictional example: an easy pace, just to get some fresh air.",
     "demo": true
   },
   {
     "id": "full-body",
     "date": "2026-10-26",
     "sport": "Strength",
-    "title": "Revenir aux bases",
+    "title": "Back to basics",
     "minutes": 55,
     "km": 0,
-    "effort": "Modéré",
-    "note": "Exemple fictif : squat 3 × 8, développé 3 × 8, rowing 3 × 10. Charges volontairement omises.",
+    "effort": "Moderate",
+    "note": "Fictional example: squats 3 × 8, presses 3 × 8, rows 3 × 10. Weights intentionally omitted.",
     "demo": true,
     "exercises": [
       {
@@ -28,7 +28,7 @@
         "kg": 40
       },
       {
-        "name": "Rowing",
+        "name": "Row",
         "sets": 3,
         "reps": 10,
         "kg": 20
@@ -39,22 +39,22 @@
     "id": "long-sunday",
     "date": "2026-10-25",
     "sport": "Running",
-    "title": "Prendre le chemin long",
+    "title": "Taking the long way",
     "minutes": 72,
     "km": 12,
-    "effort": "Facile",
-    "note": "Exemple fictif : une sortie longue sans objectif de vitesse.",
+    "effort": "Easy",
+    "note": "Fictional example: a long run with no pace target.",
     "demo": true
   },
   {
     "id": "upper-body",
     "date": "2026-10-22",
     "sport": "Strength",
-    "title": "Un peu plus solide",
+    "title": "A little stronger",
     "minutes": 45,
     "km": 0,
-    "effort": "Modéré",
-    "note": "Exemple fictif : tractions assistées 3 × 6, pompes 3 × 10, gainage 3 × 30 s.",
+    "effort": "Moderate",
+    "note": "Fictional example: assisted pull-ups 3 × 6, push-ups 3 × 10, core holds 3 × 30 s.",
     "demo": true,
     "exercises": [
       {
@@ -64,7 +64,7 @@
         "kg": 40
       },
       {
-        "name": "Rowing",
+        "name": "Row",
         "sets": 3,
         "reps": 10,
         "kg": 20
@@ -75,77 +75,77 @@
     "id": "tempo",
     "date": "2026-10-20",
     "sport": "Running",
-    "title": "Changer de rythme",
+    "title": "A change of pace",
     "minutes": 38,
     "km": 6.5,
-    "effort": "Soutenu",
-    "note": "Exemple fictif : échauffement puis trois blocs de cinq minutes.",
+    "effort": "Hard",
+    "note": "Fictional example: a warm-up followed by three five-minute blocks.",
     "demo": true
   },
   {
     "id": "easy",
     "date": "2026-10-17",
     "sport": "Running",
-    "title": "Sans regarder la montre",
+    "title": "Without watching the clock",
     "minutes": 30,
     "km": 5,
-    "effort": "Facile",
-    "note": "Exemple fictif : une courte sortie de récupération.",
+    "effort": "Easy",
+    "note": "Fictional example: a short recovery run.",
     "demo": true
   },
   {
     "id": "double-day",
     "date": "2026-10-28",
     "sport": "Strength",
-    "title": "Mobilité et renforcement",
+    "title": "Mobility and strength",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
     "exercises": [
       {
-        "name": "Pompes",
+        "name": "Push-ups",
         "sets": 3,
         "reps": 10
       },
       {
-        "name": "Gainage",
+        "name": "Core hold",
         "sets": 3,
         "seconds": 30
       }
     ],
-    "note": "Démonstration fictive : deuxième séance du même jour."
+    "note": "Fictional demo: a second session on the same day."
   },
   {
     "id": "demo-1",
     "date": "2026-01-04",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 1",
+    "title": "Easy miles · run 1",
     "km": 6.7
   },
   {
     "id": "demo-2",
     "date": "2026-01-11",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 2",
+    "title": "Easy miles · run 2",
     "km": 9.2
   },
   {
     "id": "demo-3",
     "date": "2026-01-18",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 3",
+    "title": "The basics · session 3",
     "exercises": [
       {
         "name": "Squat",
@@ -154,7 +154,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -165,33 +165,33 @@
     "id": "demo-4",
     "date": "2026-01-25",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 4",
+    "title": "Easy miles · run 4",
     "km": 14.2
   },
   {
     "id": "demo-5",
     "date": "2026-02-01",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 5",
+    "title": "Easy miles · run 5",
     "km": 4.2
   },
   {
     "id": "demo-6",
     "date": "2026-02-08",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 6",
+    "title": "The basics · session 6",
     "exercises": [
       {
         "name": "Squat",
@@ -200,7 +200,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -211,33 +211,33 @@
     "id": "demo-7",
     "date": "2026-02-15",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 7",
+    "title": "Easy miles · run 7",
     "km": 9.2
   },
   {
     "id": "demo-8",
     "date": "2026-02-22",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 8",
+    "title": "Easy miles · run 8",
     "km": 11.7
   },
   {
     "id": "demo-9",
     "date": "2026-03-01",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 9",
+    "title": "The basics · session 9",
     "exercises": [
       {
         "name": "Squat",
@@ -246,7 +246,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -257,33 +257,33 @@
     "id": "demo-10",
     "date": "2026-03-08",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 10",
+    "title": "Easy miles · run 10",
     "km": 4.2
   },
   {
     "id": "demo-11",
     "date": "2026-03-15",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 11",
+    "title": "Easy miles · run 11",
     "km": 6.7
   },
   {
     "id": "demo-12",
     "date": "2026-03-22",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 12",
+    "title": "The basics · session 12",
     "exercises": [
       {
         "name": "Squat",
@@ -292,7 +292,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -303,33 +303,33 @@
     "id": "demo-13",
     "date": "2026-03-29",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 13",
+    "title": "Easy miles · run 13",
     "km": 11.7
   },
   {
     "id": "demo-14",
     "date": "2026-04-05",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 14",
+    "title": "Easy miles · run 14",
     "km": 14.2
   },
   {
     "id": "demo-15",
     "date": "2026-04-12",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 15",
+    "title": "The basics · session 15",
     "exercises": [
       {
         "name": "Squat",
@@ -338,7 +338,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -349,33 +349,33 @@
     "id": "demo-16",
     "date": "2026-04-19",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 16",
+    "title": "Easy miles · run 16",
     "km": 6.7
   },
   {
     "id": "demo-17",
     "date": "2026-04-26",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 17",
+    "title": "Easy miles · run 17",
     "km": 9.2
   },
   {
     "id": "demo-18",
     "date": "2026-05-03",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 18",
+    "title": "The basics · session 18",
     "exercises": [
       {
         "name": "Squat",
@@ -384,7 +384,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -395,33 +395,33 @@
     "id": "demo-19",
     "date": "2026-05-10",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 19",
+    "title": "Easy miles · run 19",
     "km": 14.2
   },
   {
     "id": "demo-20",
     "date": "2026-05-17",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 20",
+    "title": "Easy miles · run 20",
     "km": 4.2
   },
   {
     "id": "demo-21",
     "date": "2026-05-24",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 21",
+    "title": "The basics · session 21",
     "exercises": [
       {
         "name": "Squat",
@@ -430,7 +430,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -441,33 +441,33 @@
     "id": "demo-22",
     "date": "2026-05-31",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 22",
+    "title": "Easy miles · run 22",
     "km": 9.2
   },
   {
     "id": "demo-23",
     "date": "2026-06-07",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 23",
+    "title": "Easy miles · run 23",
     "km": 11.7
   },
   {
     "id": "demo-24",
     "date": "2026-06-14",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 24",
+    "title": "The basics · session 24",
     "exercises": [
       {
         "name": "Squat",
@@ -476,7 +476,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -487,33 +487,33 @@
     "id": "demo-25",
     "date": "2026-06-21",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 25",
+    "title": "Easy miles · run 25",
     "km": 4.2
   },
   {
     "id": "demo-26",
     "date": "2026-06-28",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 26",
+    "title": "Easy miles · run 26",
     "km": 6.7
   },
   {
     "id": "demo-27",
     "date": "2026-07-05",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 27",
+    "title": "The basics · session 27",
     "exercises": [
       {
         "name": "Squat",
@@ -522,7 +522,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -533,33 +533,33 @@
     "id": "demo-28",
     "date": "2026-07-12",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 28",
+    "title": "Easy miles · run 28",
     "km": 11.7
   },
   {
     "id": "demo-29",
     "date": "2026-07-19",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 29",
+    "title": "Easy miles · run 29",
     "km": 14.2
   },
   {
     "id": "demo-30",
     "date": "2026-07-26",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 30",
+    "title": "The basics · session 30",
     "exercises": [
       {
         "name": "Squat",
@@ -568,7 +568,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -579,33 +579,33 @@
     "id": "demo-31",
     "date": "2026-08-02",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 31",
+    "title": "Easy miles · run 31",
     "km": 6.7
   },
   {
     "id": "demo-32",
     "date": "2026-08-09",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 32",
+    "title": "Easy miles · run 32",
     "km": 9.2
   },
   {
     "id": "demo-33",
     "date": "2026-08-16",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 33",
+    "title": "The basics · session 33",
     "exercises": [
       {
         "name": "Squat",
@@ -614,7 +614,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -625,33 +625,33 @@
     "id": "demo-34",
     "date": "2026-08-23",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 34",
+    "title": "Easy miles · run 34",
     "km": 14.2
   },
   {
     "id": "demo-35",
     "date": "2026-08-30",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 35",
+    "title": "Easy miles · run 35",
     "km": 4.2
   },
   {
     "id": "demo-36",
     "date": "2026-09-06",
     "minutes": 40,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 36",
+    "title": "The basics · session 36",
     "exercises": [
       {
         "name": "Squat",
@@ -660,7 +660,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -671,33 +671,33 @@
     "id": "demo-37",
     "date": "2026-09-13",
     "minutes": 55,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 37",
+    "title": "Easy miles · run 37",
     "km": 9.2
   },
   {
     "id": "demo-38",
     "date": "2026-09-20",
     "minutes": 70,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 38",
+    "title": "Easy miles · run 38",
     "km": 11.7
   },
   {
     "id": "demo-39",
     "date": "2026-09-27",
     "minutes": 85,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Strength",
-    "title": "Les bases · séance 39",
+    "title": "The basics · session 39",
     "exercises": [
       {
         "name": "Squat",
@@ -706,7 +706,7 @@
         "kg": 40
       },
       {
-        "name": "Développé",
+        "name": "Press",
         "sets": 3,
         "reps": 8,
         "kg": 25
@@ -717,33 +717,33 @@
     "id": "demo-40",
     "date": "2026-10-04",
     "minutes": 25,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Séance fictive pour explorer le carnet annuel.",
+    "note": "Fictional session to explore the yearly journal.",
     "sport": "Running",
-    "title": "Kilomètres tranquilles · sortie 40",
+    "title": "Easy miles · run 40",
     "km": 4.2
   },
   {
     "id": "last-day-2025",
     "date": "2025-12-31",
     "sport": "Running",
-    "title": "Dernière boucle de l’année",
+    "title": "The last loop of the year",
     "minutes": 30,
     "km": 5,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Exemple fictif de passage d’année."
+    "note": "Fictional example spanning the year boundary."
   },
   {
     "id": "leap-day-2024",
     "date": "2024-02-29",
     "sport": "Running",
-    "title": "Le jour en plus",
+    "title": "The extra day",
     "minutes": 24,
     "km": 4,
-    "effort": "Facile",
+    "effort": "Easy",
     "demo": true,
-    "note": "Exemple fictif du 29 février."
+    "note": "Fictional example for 29 February."
   }
 ]

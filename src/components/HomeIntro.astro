@@ -1,0 +1,26 @@
+---
+import { Gamepad2 } from '@lucide/astro';
+import instagram from '../assets/social/instagram.svg?raw';
+import linkedin from '../assets/social/linkedin.svg?raw';
+import github from '../assets/social/github.svg?raw';
+import { home } from '../lib/home';
+const icons = { instagram, linkedin, github };
+---
+<section class="home-intro" aria-labelledby="personal-introduction" lang="en">
+  <p class="intro-kicker">A PERSONAL SPACE FOR CURIOSITY</p>
+  <h1 id="personal-introduction">{home.name}</h1>
+  <p class="intro-statement">{home.introduction}</p>
+  <ul class="intro-socials" aria-label="Social profiles">
+    {home.socials.map(social => {
+      const Tag = social.url ? 'a' : 'span';
+      return <li><Tag href={social.url ?? undefined} target={social.url ? '_blank' : undefined} rel={social.url ? 'noopener noreferrer' : undefined} class={!social.url ? 'social-unavailable' : undefined} aria-disabled={!social.url ? 'true' : undefined}><span class="social-icon" aria-hidden="true">{social.id === 'opgg' ? <Gamepad2 size={17} stroke-width={1.6}/> : <Fragment set:html={icons[social.id]}/>}</span><span>{social.label}</span>{social.url ? <span class="sr-only"> — opens in a new tab</span> : <span class="sr-only"> — profile not available yet</span>}</Tag></li>;
+    })}
+  </ul>
+  {home.socials.every(social => !social.url) && <p class="profiles-status">Profiles not linked yet.</p>}
+  <p class="intro-reading">{home.reading.before}<a href={home.reading.href}>{home.reading.label}</a>{home.reading.after}</p>
+</section>
+<style>
+.profiles-status{font-size:11px;color:var(--text-secondary);margin:-22px 0 30px}
+.home-intro{padding:58px 0 62px;border-bottom:1px solid var(--border);max-width:100%}.intro-kicker{font-size:10px;letter-spacing:2px;line-height:1.6;color:var(--text-secondary);margin-bottom:26px}.home-intro h1{font-size:104px;line-height:1;letter-spacing:-7px;margin:0 0 30px;font-weight:500}.intro-statement{font-size:clamp(20px,2.4vw,28px);line-height:1.65;letter-spacing:-.6px;max-width:730px;margin:0 0 30px;color:var(--text)}.intro-socials{display:flex;flex-wrap:wrap;gap:18px 26px;list-style:none;padding:0;margin:0 0 34px}.intro-socials a,.social-unavailable{display:inline-flex;gap:9px;align-items:center;min-height:44px;font-size:12px;text-decoration:none;color:var(--text-secondary)}.social-unavailable{cursor:default}.social-icon{display:inline-flex;width:17px;height:17px;align-items:center;justify-content:center}.social-icon :global(svg){display:block;width:17px;height:17px;fill:currentColor}.social-icon :global(svg.lucide){fill:none}.intro-reading{font-size:13px;color:var(--text-secondary);margin:0}.intro-reading a{text-decoration:underline;text-decoration-color:var(--border);text-decoration-thickness:1px;text-underline-offset:4px}.intro-reading a:hover,.intro-reading a:focus-visible{text-decoration-color:currentColor;color:var(--text)}
+@media(max-width:1023px){.home-intro{padding-top:40px}.home-intro h1{font-size:88px;letter-spacing:-5px}}@media(max-width:620px){.home-intro{padding:38px 0 42px}.home-intro h1{font-size:64px;letter-spacing:-4px;margin-bottom:26px}.intro-kicker{font-size:9px;letter-spacing:1.6px;margin-bottom:24px}.intro-statement{font-size:21px;line-height:1.65;letter-spacing:-.35px;margin-bottom:24px}.intro-socials{gap:3px 23px;margin-bottom:26px}.intro-reading{font-size:12px}}
+</style>

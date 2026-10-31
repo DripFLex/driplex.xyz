@@ -48,7 +48,7 @@ test('QA : architecture entièrement statique et données locales', () => {
 });
 
 const activity = (values: Record<string, unknown>) => sessionSchema.parse({
-  id: 'qa-run', date: '2024-02-29', sport: 'Running', title: 'QA fictive', minutes: 25, km: 5, effort: 'Facile', demo: true, ...values,
+  id: 'qa-run', date: '2024-02-29', sport: 'Running', title: 'QA fictive', minutes: 25, km: 5, effort: 'Easy', demo: true, ...values,
 });
 
 test('QA : calendrier civil exhaustif de 1900 à 2100, ordre lundi à dimanche', () => {
