@@ -6,6 +6,6 @@ async function htmlFiles(dir){const entries=await readdir(dir,{withFileTypes:tru
 test('toutes les pages générées et leurs liens internes existent',async()=>{
  const sessions=JSON.parse(await readFile('src/data/sessions.json','utf8'));
  const posts=(await readdir('src/content/posts')).filter(file=>file.endsWith('.md'));
- const pages=await htmlFiles('dist');assert.equal(pages.length,8+sessions.length+posts.length);
- for(const page of pages){const html=await readFile(page,'utf8');assert.match(html,/<html lang="fr"/);assert.match(html,/<h1[ >]/);for(const match of html.matchAll(/(?:href|src)="(\/(?!\/)[^"#?]*)/g)){let path=join('dist',decodeURIComponent(match[1]));if(match[1].endsWith('/'))path=join(path,'index.html');assert.ok((await stat(path)).isFile(),`${page} → ${match[1]}`);}}
+ const pages=await htmlFiles('dist');assert.equal(pages.length,11+sessions.length+posts.length);
+ for(const page of pages){const html=await readFile(page,'utf8');assert.match(html,/<html lang="en"/);assert.match(html,/<h1[ >]/);for(const match of html.matchAll(/(?:href|src)="(\/(?!\/)[^"#?]*)/g)){let path=join('dist',decodeURIComponent(match[1]));if(match[1].endsWith('/'))path=join(path,'index.html');assert.ok((await stat(path)).isFile(),`${page} → ${match[1]}`);}}
 });

@@ -1,0 +1,11 @@
+{
+  "name": "driplex.",
+  "introduction": "Exploring new technologies, sharpening my mind, and building a stronger, healthier body.",
+  "reading": { "before": "Occasionally lost in ", "label": "a good story", "after": ".", "href": "/library/" },
+  "socials": [
+    { "id": "instagram", "label": "Instagram", "url": "https://www.instagram.com/philippehenn/" },
+    { "id": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/philippe-hennericy-1505a3288/" },
+    { "id": "github", "label": "GitHub", "url": "https://github.com/DripFLex" },
+    { "id": "opgg", "label": "OP.GG", "url": "https://op.gg/fr/lol/summoners/euw/BIG%20DRIP-EXXD" }
+  ]
+}

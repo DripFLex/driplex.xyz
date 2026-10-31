@@ -42,6 +42,8 @@ Sans JavaScript, le bilan initial 2026 et ses liens de fiches restent lisibles ;
 
 ## Où éditer
 
+La Home V2.1 est décrite dans [Home V2.1](docs/home-v2.1.md) : composition **Carnet en chapitres** validée, introduction et navigation responsive, contenus locaux conservés. Now, League of Legends et Library disposent de structures minimales. **Library** accueillera livres, films et séries ; son catalogue sera développé ultérieurement. Le lien discret de la Home mène à `/library/`.
+
 | Fichier | Contenu |
 | --- | --- |
 | `src/data/profile.json` | Présentation, liens, objectifs, side quests |
@@ -53,9 +55,9 @@ Sans JavaScript, le bilan initial 2026 et ses liens de fiches restent lisibles ;
 | `src/styles/global.css` | Tokens et style éditorial |
 | `src/styles/training.css` | Mise en page du dashboard sportif |
 | `src/pages/training/` | Dashboard et fiches |
-| `public/cover.svg` | Illustration placeholder originale à remplacer par une photo autorisée |
+| `public/cover.svg` | Illustration historique conservée, absente de la Home V2.1 |
 
-Photography, Travel et Stuff sont des structures initiales soignées, pas des collections de données réelles. La couverture est une illustration et les billets sont des démonstrations.
+Photography, Travel et Stuff sont des structures initiales soignées, pas des collections de données réelles. La Home V2.1 n’utilise aucune couverture. Les billets et séances présentés restent des démonstrations explicitement signalées.
 
 ## Documentation et revue
 

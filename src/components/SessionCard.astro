@@ -5,5 +5,5 @@ const {session:s}=Astro.props;
 ---
 <article class="session" data-sport={s.sport} data-date={s.date}>
  <div class:list={['sport-icon',s.sport.toLowerCase()]} aria-hidden="true">{s.sport==='Running'?'↗':'↔'}</div>
- <div class="session-body"><p class="eyebrow">{dateLabel(s.date)} · {s.sport} · Démonstration</p><h3><a href={`/training/${s.id}/`}>{s.title}</a></h3><p>{s.effort} <span aria-hidden="true">·</span> {s.minutes} min {s.sport==='Running'&&s.km&&`· ${s.km.toLocaleString('fr-BE')} km · ${paceLabel(s)}`}</p></div><a class="arrow" href={`/training/${s.id}/`} aria-label={`Voir ${s.title}`}>↗</a>
+ <div class="session-body"><p class="eyebrow">{dateLabel(s.date)} · {s.sport} · Demo</p><h3><a href={`/training/${s.id}/`}>{s.title}</a></h3><p>{s.effort} <span aria-hidden="true">·</span> {s.minutes} min {s.sport==='Running'&&s.km&&`· ${s.km.toLocaleString('en-GB')} km · ${paceLabel(s)}`}</p></div><a class="arrow" href={`/training/${s.id}/`} aria-label={`View ${s.title}`}>↗</a>
 </article>

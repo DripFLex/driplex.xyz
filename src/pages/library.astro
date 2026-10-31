@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+const shelves = ['Books', 'Movies', 'TV shows'];
+---
+<Layout title="Library" description="A personal space for books, movies and TV shows. Collection coming later.">
+  <div lang="en"><section class="page-heading"><p class="eyebrow">PERSONAL LIBRARY</p><h1>Library</h1><p class="lead">Books, movies and TV shows. A collection to build over time.</p><a href="/">Back to Home ↗</a></section>
+  {shelves.map(shelf => <section class="book-shelf"><h2>{shelf}</h2><p>No entries added yet.</p></section>)}</div>
+</Layout>
+<style>.book-shelf{border-top:1px solid var(--border);padding:28px 0}.book-shelf h2{font-size:24px;margin-bottom:12px}.book-shelf p{font-size:14px;color:var(--text-secondary);margin:0}</style>

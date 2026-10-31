@@ -4,4 +4,4 @@ import {getCollection,render} from 'astro:content';
 export async function getStaticPaths(){return (await getCollection('posts')).map(post=>({params:{id:post.id},props:{post}}));}
 const {post}=Astro.props;const {Content}=await render(post);
 ---
-<Layout title={post.data.title} description={post.data.description}><article class="reading prose"><a href="/">← Retour au carnet</a><div class="page-heading"><p class="eyebrow">JOURNAL · {post.data.tag} · DÉMONSTRATION</p><h1>{post.data.title}</h1></div><Content/></article></Layout>
+<Layout title={post.data.title} description={post.data.description}><article class="reading prose"><a href="/">← Back to the journal</a><div class="page-heading"><p class="eyebrow">JOURNAL · {post.data.tag} · DEMO</p><h1>{post.data.title}</h1></div><Content/></article></Layout>

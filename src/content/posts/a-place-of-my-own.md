@@ -1,11 +1,11 @@
 ---
-title: Un endroit à soi
+title: A place of my own
 date: 2026-10-29
-description: Repartir d’une page blanche et construire un site qui peut grandir doucement.
+description: Starting with a blank page and building a site with room to grow.
 tag: Site
 ---
-Ce premier billet est un **contenu de démonstration**, à remplacer par mes propres mots.
+This first post is **demo content**, to be replaced with my own words.
 
-L’idée est simple : rassembler ici les projets, les entraînements et les choses remarquées en chemin. Un site personnel comme un carnet ouvert, avec de la place pour les essais et les détours.
+The idea is simple: bring together projects, training and things noticed along the way. A personal site like an open journal, with room for experiments and detours.
 
-Pas besoin que tout soit terminé pour commencer. Une page, quelques notes, et l’envie de revenir.
+Everything doesn’t need to be finished before I start. A page, a few notes and a reason to come back.

@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { sessions, sessionSchema, totals, sportStats, calendar, filterSessions, volumeLevel, paceLabel, type Session } from '../src/lib/data';
-const run:Session={id:'test-run',date:'2026-01-01',sport:'Running',title:'Test',minutes:42,km:7,effort:'Facile',demo:true};
-const strength:Session={id:'test-strength',date:'2026-01-01',sport:'Strength',title:'Test force',minutes:25,effort:'Modéré',demo:true,exercises:[{name:'Squat',sets:3,reps:8,kg:40}]};
+const run:Session={id:'test-run',date:'2026-01-01',sport:'Running',title:'Test',minutes:42,km:7,effort:'Easy',demo:true};
+const strength:Session={id:'test-strength',date:'2026-01-01',sport:'Strength',title:'Test force',minutes:25,effort:'Moderate',demo:true,exercises:[{name:'Squat',sets:3,reps:8,kg:40}]};
 test('les agrégats additionnent seulement les données disponibles',()=>{
  assert.deepEqual(totals([run,strength]),{count:2,minutes:67,km:7});assert.deepEqual(totals([]),{count:0,minutes:0,km:0});
  const stats=sportStats([strength,run]);assert.equal(stats.running.count,1);assert.equal(stats.strength.minutes,25);assert.deepEqual(stats.strength.exercises,['Squat']);assert.deepEqual(stats.running.records,[]);assert.equal(paceLabel(run),'6:00 /km');assert.equal(paceLabel({...run,km:undefined}),undefined);

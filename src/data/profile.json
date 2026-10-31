@@ -1,8 +1,8 @@
 {
   "name": "DripleX",
-  "intro": "Un coin du web pour construire, bouger et garder une trace. Des projets en cours, des kilomètres dehors et les petites choses qui méritent de rester.",
-  "note": "Texte de présentation provisoire, à personnaliser.",
-  "links": [{"label":"Les projets","href":"/projects/"},{"label":"À propos","href":"/about/"}],
-  "goals": ["Courir avec régularité", "Faire une place à la force", "Publier plus souvent"],
-  "quests": ["Créer mon propre coin du web", "Partir une journée sans itinéraire", "Remplir un carnet de photos"]
+  "intro": "A corner of the web to build, move and keep a record. Work in progress, miles outside and the little things worth remembering.",
+  "note": "Placeholder introduction, to make my own.",
+  "links": [{"label":"Projects","href":"/projects/"},{"label":"About","href":"/about/"}],
+  "goals": ["Run consistently", "Make time for strength", "Write more often"],
+  "quests": ["Build my own corner of the web", "Spend a day without an itinerary", "Fill a journal with photos"]
 }
