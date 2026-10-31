@@ -1,0 +1,31 @@
+---
+interface Props {
+  links: { label: string; url: string; description: string }[];
+}
+const { links } = Astro.props;
+---
+{links.length > 0 && <section class="elsewhere" aria-labelledby="elsewhere-title">
+  <h2 id="elsewhere-title" class="eyebrow">Elsewhere</h2>
+  <ul class="elsewhere-list" role="list">
+    {links.map(link => <li class="elsewhere-item"><a class="elsewhere-link" href={link.url} target="_blank" rel="noopener noreferrer">
+      <span class="elsewhere-name">{link.label}</span>
+      <span class="elsewhere-line" aria-hidden="true"></span>
+      <span class="elsewhere-description">{link.description}</span>
+      <span class="sr-only"> — opens in a new tab</span>
+    </a></li>)}
+  </ul>
+</section>}
+<style>
+  .elsewhere{margin-top:88px;padding-top:40px;border-top:1px solid var(--border)}
+  .elsewhere h2{font-family:var(--font-body);letter-spacing:1.6px;margin:0 0 24px}
+  .elsewhere-list{list-style:none;padding:0;margin:0}
+  .elsewhere-item{list-style:none;margin:0;padding:0}
+  .elsewhere-link{display:grid;grid-template-columns:max-content minmax(12px,1fr) max-content;align-items:center;gap:18px;min-height:48px;padding:12px 0;text-decoration:none;font-size:14px;line-height:1.6;color:var(--text)}
+  .elsewhere-name{font-weight:500}
+  .elsewhere-line{border-bottom:1px dotted var(--border);min-width:0}
+  .elsewhere-description{color:var(--text-secondary);text-align:right}
+  .elsewhere-link:hover,.elsewhere-link:focus-visible{color:var(--interactive);text-decoration:none}
+  .elsewhere-link:hover .elsewhere-line,.elsewhere-link:focus-visible .elsewhere-line{border-color:var(--text-secondary)}
+  .elsewhere-link:hover .elsewhere-description,.elsewhere-link:focus-visible .elsewhere-description{color:var(--text)}
+  @media(max-width:620px){.elsewhere{margin-top:56px;padding-top:32px}.elsewhere-link{font-size:12px;gap:10px;grid-template-columns:max-content minmax(8px,1fr) minmax(0,max-content)}.elsewhere-description{max-width:170px;overflow-wrap:break-word}}
+</style>

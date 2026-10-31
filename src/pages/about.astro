@@ -1,5 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {profile} from '../lib/data';
+import HomeChapter from '../components/HomeChapter.astro';
+import Elsewhere from '../components/Elsewhere.astro';
+import { home } from '../lib/home';
+const elsewhere = [
+  { id: 'github', description: "Things I'm building" },
+  { id: 'linkedin', description: 'My professional side' },
+  { id: 'instagram', description: 'Moments worth capturing' },
+  { id: 'opgg', description: 'A little competitive side' },
+].flatMap(({ id, description }) => {
+  const social = home.socials.find(item => item.id === id);
+  return social?.url ? [{ label: social.label, url: social.url, description }] : [];
+});
 ---
-<Layout title="About"><article class="reading"><div class="page-heading"><p class="eyebrow">ABOUT / 05</p><h1>A little corner<br/><em>of my own.</em></h1><p class="lead">{profile.intro}</p></div><h2>Why this site?</h2><p>To gather notes, keep track of movement and give projects a home. An independent personal space that can grow without getting complicated.</p><h2>More to come</h2><p>I’ll add a biography, personal links and photos by hand. For now, this first version sets the scene.</p><p class="demo-notice">Placeholder introduction. The training and writing examples are fictional, not biographical.</p><a href="/projects/">Explore projects ↗</a></article></Layout>
+<Layout title="About" description="Hey, I'm Philippe. Curiosity gets me started. Challenges keep me going. A work in progress, in IT and beyond.">
+  <article class="about-page" aria-labelledby="about-title">
+    <header class="about-hero">
+      <p class="eyebrow">ABOUT / PHILIPPE</p>
+      <h1 id="about-title">A work<br/>in progress.</h1>
+      <p class="about-philosophy">Curiosity gets me started.<br/>Challenges keep me going.</p>
+      <div class="about-introduction">
+        <p class="about-greeting">Hey, I'm Philippe.</p>
+        <p>I'm a naturally curious person who loves exploring new ideas, understanding how things work, and discovering what I'm capable of.</p>
+        <p>I work in IT, but my interests go far beyond technology. I enjoy challenging myself physically, getting immersed in a good story, exploring new places, and picking up interests I never expected to have.</p>
+        <p>I don't have everything figured out. I'm still learning, changing my mind, and finding new directions to explore. And I wouldn't want it any other way.</p>
+      </div>
+    </header>
+
+    <HomeChapter id="about-curiosity" label="01 / CURIOSITY" title="Curiosity & challenges" compact>
+      <p>I've always enjoyed discovering new things, but what really drives me is the challenge that comes with them.</p>
+      <p>There's something incredibly satisfying about taking on something I don't know how to do yet, figuring things out along the way, and eventually making it work.</p>
+      <p>Whether it's <a href="/projects/">building something from scratch</a>, exploring unfamiliar technology, or trying something outside my comfort zone, I enjoy the process of turning uncertainty into progress.</p>
+    </HomeChapter>
+
+    <HomeChapter id="about-limits" label="02 / MOVEMENT" title="Pushing my limits" compact>
+      <p><a href="/training/">Running and strength training</a> have become part of how I challenge myself.</p>
+      <p>I like setting goals, putting in the work, and discovering that something which once felt difficult can eventually become possible.</p>
+      <p>But progress isn't always linear. Some days are harder than others, and I'm learning that consistency matters more than perfection.</p>
+    </HomeChapter>
+
+    <HomeChapter id="about-routine" label="03 / EXPLORATION" title="Beyond the routine" compact>
+      <p>There's more to life than work and training.</p>
+      <p>Photography, travelling, films, books, gaming — I enjoy having different worlds to explore.</p>
+      <p>Some experiences make me think, others challenge my perspective, and some are simply fun. I want to keep discovering new things without feeling that everything needs to become an achievement.</p>
+    </HomeChapter>
+
+    <footer class="about-closing">
+      <p>Still learning.<br/>Still exploring.<br/><span>Still becoming.</span></p>
+    </footer>
+    <Elsewhere links={elsewhere}/>
+  </article>
+</Layout>
+<style>
+  .about-hero{padding:55px 0 64px;border-bottom:1px solid var(--border)}
+  .about-hero>.eyebrow{margin-bottom:26px}
+  .about-hero h1{font-size:clamp(56px,6.5vw,88px);line-height:1.05;font-weight:500;letter-spacing:-.06em;margin:0 0 32px}
+  .about-philosophy{font-family:var(--font-heading);font-size:clamp(21px,2.5vw,28px);line-height:1.5;letter-spacing:-.5px;margin-bottom:40px}
+  .about-introduction{max-width:680px}
+  .about-introduction p{font-size:16px;line-height:1.85;color:var(--text-secondary);margin-bottom:20px}
+  .about-introduction .about-greeting{color:var(--text);font-size:20px}
+  .about-introduction p:last-child{margin-bottom:0}
+  .about-page :global(.chapter-content){max-width:680px}
+  .about-page :global(.chapter-content p:last-child){margin-bottom:0}
+  .about-page :global(.chapter-content a){text-decoration-color:var(--border);text-decoration-thickness:1px;text-underline-offset:4px}
+  .about-page :global(.chapter-content a:hover),.about-page :global(.chapter-content a:focus-visible){text-decoration-color:currentColor}
+  .about-closing{width:100%;display:block;margin:0;padding:64px 0 0;border:0}
+  .about-closing p{font-family:var(--font-heading);font-size:clamp(28px,3.5vw,42px);line-height:1.4;letter-spacing:-.8px;color:var(--text);margin:0}
+  .about-closing span{color:var(--text-secondary)}
+  @media(max-width:800px){.about-hero{padding:32px 0 40px}.about-hero h1{font-size:56px}.about-philosophy{font-size:22px;margin-bottom:32px}.about-introduction p{font-size:15px;line-height:1.8}.about-introduction .about-greeting{font-size:18px}.about-closing{padding-top:40px}}
+</style>
