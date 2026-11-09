@@ -9,17 +9,83 @@ import '@fontsource/space-grotesk/latin-600.css';
 import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import spaceMedium from '@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2?url';
 import SiteNav from '../components/SiteNav.astro';
-interface Props { title:string; description?:string }
-const {title,description='The personal journal of DripleX. Projects, movement and little detours.'}=Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'The personal journal of DripleX. Projects, movement and little detours.',
+} = Astro.props;
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · driplex.xyz</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href={spaceMedium} as="font" type="font/woff2" crossorigin="anonymous"/></head><body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="site-shell"><header class:list={["header", { "header-home": Astro.url.pathname === "/" }]}><a class="brand" href="/" aria-label="driplex.xyz — Home">driplex<span>.xyz</span><span class="brand-dot" aria-hidden="true"></span></a><SiteNav/></header>
-<main id="main" class:list={{'home-main':Astro.url.pathname === '/'}} tabindex="-1"><slot/></main><footer class:list={{'footer-home':Astro.url.pathname === '/'}}><a class="brand" href="/">driplex.xyz</a><span>A journal in motion. <span class="footer-year">© 2026</span></span><div class="footer-links"><a href="/stuff/">Stuff</a><a href="#main">Back to top ↑</a></div></footer>
-</div></body></html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · driplex.xyz</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={spaceMedium} as="font" type="font/woff2" crossorigin="anonymous" />
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <div class="site-shell">
+      <header class:list={['header', { 'header-home': Astro.url.pathname === '/' }]}>
+        <a class="brand" href="/" aria-label="driplex.xyz — Home">
+          driplex<span>.xyz</span>
+          <span class="brand-dot" aria-hidden="true"></span>
+        </a>
+        <SiteNav />
+      </header>
+      <main id="main" class:list={{ 'home-main': Astro.url.pathname === '/' }} tabindex="-1">
+        <slot />
+      </main>
+      <footer class:list={{ 'footer-home': Astro.url.pathname === '/' }}>
+        <a class="brand" href="/">
+          driplex.xyz
+        </a>
+        <span>
+          A journal in motion. <span class="footer-year">© 2026</span>
+        </span>
+        <div class="footer-links">
+          <a href="/stuff/">Stuff</a>
+          <a href="#main">Back to top ↑</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
 
 <style>
-@media(min-width:1024px){.site-shell{margin-left:112px}.header-home{min-height:64px}.header-home>.brand{visibility:hidden}}
-@media(max-width:1023px){.header{min-height:96px;flex-wrap:nowrap;padding:20px 0;gap:16px}}
-@media(max-width:620px){.header-home,.home-main,.footer-home{width:calc(100% - 48px)}}
+  @media (min-width: 1024px) {
+    .site-shell {
+      margin-left: 112px;
+    }
+    .header-home {
+      min-height: 64px;
+    }
+    .header-home > .brand {
+      visibility: hidden;
+    }
+  }
+  @media (max-width: 1023px) {
+    .header {
+      min-height: 96px;
+      flex-wrap: nowrap;
+      padding: 20px 0;
+      gap: 16px;
+    }
+  }
+  @media (max-width: 620px) {
+    .header-home,
+    .home-main,
+    .footer-home {
+      width: calc(100% - 48px);
+    }
+  }
 </style>

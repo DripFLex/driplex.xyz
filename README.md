@@ -61,6 +61,7 @@ Photography, Travel et Stuff sont des structures initiales soignées, pas des co
 
 ## Documentation et revue
 
+- [Roadmap — pages à remplir](ROADMAP.md)
 - [Design system](docs/design-system.md)
 - [Modèle et calendrier](docs/training.md)
 - [Décisions techniques](docs/decisions.md)
