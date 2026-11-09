@@ -1,4 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Stuff"><div class="page-heading"><p class="eyebrow">STUFF / 04</p><h1>Less, but <em>better.</em></h1><p class="lead">Tools, books and everyday objects that earn their place.</p></div><ul class="simple-list">{[['At the desk','A future selection of tools for making and working.'],['In the bag','The gear that comes along for the ride.'],['On the nightstand','Books and a few notes in the margins.']].map(([title,body])=><li><p class="eyebrow">SELECTION COMING SOON</p><h2>{title}</h2><p>{body}</p></li>)}</ul></Layout>
+
+<Layout title="Stuff">
+  <div class="page-heading">
+    <p class="eyebrow">STUFF / 04</p>
+    <h1>
+      Less, but <em>better.</em>
+    </h1>
+    <p class="lead">Tools, books and everyday objects that earn their place.</p>
+  </div>
+  <ul class="simple-list">
+    {[
+      ['At the desk', 'A future selection of tools for making and working.'],
+      ['In the bag', 'The gear that comes along for the ride.'],
+      ['On the nightstand', 'Books and a few notes in the margins.'],
+    ].map(([title, body]) => (
+      <li>
+        <p class="eyebrow">SELECTION COMING SOON</p>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </li>
+    ))}
+  </ul>
+</Layout>

@@ -3,52 +3,156 @@ import Layout from '../layouts/Layout.astro';
 import HomeIntro from '../components/HomeIntro.astro';
 import HomeChapter from '../components/HomeChapter.astro';
 import HomeEntry from '../components/HomeEntry.astro';
-import {profile,sessions,DEMO_TODAY} from '../lib/data';
-import {getCollection} from 'astro:content';
-const posts=(await getCollection('posts')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
-const latestSession=sessions.find(session=>session.date<=DEMO_TODAY);
+import { profile, sessions, DEMO_TODAY } from '../lib/data';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const latestSession = sessions.find((session) => session.date <= DEMO_TODAY);
 ---
+
 <Layout title="Home">
-  <HomeIntro/>
+  <HomeIntro />
   <div class="home-journal">
     <HomeChapter id="home-now" label="01 / RIGHT NOW" title={'Build.\nMove.\nRepeat.'} compact>
       <p>A site taking shape, one idea at a time.</p>
-      <a class="chapter-link" href="/about/">A little more about this place <span aria-hidden="true">↗</span></a>
+      <a class="chapter-link" href="/about/">
+        A little more about this place <span aria-hidden="true">↗</span>
+      </a>
     </HomeChapter>
     <HomeChapter id="home-making" label="02 / MAKING" title="A site of my own.">
-      <HomeEntry meta="PROJECT / IN PROGRESS" title="driplex.xyz" description="The site you’re exploring. A personal journal built with Astro, TypeScript and local content." href="/projects/" linkLabel="View project"/>
+      <HomeEntry
+        meta="PROJECT / IN PROGRESS"
+        title="driplex.xyz"
+        description="The site you’re exploring. A personal journal built with Astro, TypeScript and local content."
+        href="/projects/"
+        linkLabel="View project"
+      />
     </HomeChapter>
     <HomeChapter id="home-moving" label="03 / MOVING" title="Finding my stride.">
-      {latestSession ? <HomeEntry date={latestSession.date} meta={`${latestSession.sport} · DEMO`} title={latestSession.title} description={`${latestSession.effort} · ${latestSession.minutes} min. Entirely fictional demo data.`} href={`/training/${latestSession.id}/`} linkLabel="View session"/> : <p>No past sessions available.</p>}
+      {latestSession ? (
+        <HomeEntry
+          date={latestSession.date}
+          meta={`${latestSession.sport} · DEMO`}
+          title={latestSession.title}
+          description={`${latestSession.effort} · ${latestSession.minutes} min. Entirely fictional demo data.`}
+          href={`/training/${latestSession.id}/`}
+          linkLabel="View session"
+        />
+      ) : (
+        <p>No past sessions available.</p>
+      )}
     </HomeChapter>
     <HomeChapter id="home-notes" label="04 / THE JOURNAL" title="A few notes.">
-      {posts.map(post => <HomeEntry date={post.data.date.toISOString().slice(0,10)} meta={`${post.data.tag} · DEMO`} title={post.data.title} description={post.data.description} href={`/notes/${post.id}/`} linkLabel="Read note"/>)}
+      {posts.map((post) => (
+        <HomeEntry
+          date={post.data.date.toISOString().slice(0, 10)}
+          meta={`${post.data.tag} · DEMO`}
+          title={post.data.title}
+          description={post.data.description}
+          href={`/notes/${post.id}/`}
+          linkLabel="Read note"
+        />
+      ))}
     </HomeChapter>
     <section class="home-intentions" aria-label="Goals and interests">
       <div>
         <p class="intentions-label">GOALS TO MAKE MY OWN</p>
         <h2>Stay the course</h2>
-        <ul>{profile.goals.map(goal => <li>{goal}</li>)}</ul>
+        <ul>
+          {profile.goals.map((goal) => (
+            <li>{goal}</li>
+          ))}
+        </ul>
       </div>
       <div>
         <p class="intentions-label">SIDE QUESTS / LITTLE DETOURS</p>
         <h2>Take a detour</h2>
-        <ul>{profile.quests.map(quest => <li>{quest}</li>)}</ul>
+        <ul>
+          {profile.quests.map((quest) => (
+            <li>{quest}</li>
+          ))}
+        </ul>
         <p class="intentions-note">Ideas to explore, not achievements just yet.</p>
-        <a href="/photos/">See things differently <span aria-hidden="true">↗</span></a>
+        <a href="/photos/">
+          See things differently <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
   </div>
 </Layout>
 <style>
-  .home-intentions{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding:64px 0 0}
-  .home-intentions>div{min-width:0}
-  .intentions-label{font-size:10px;line-height:1.7;letter-spacing:1.1px;color:var(--text-secondary);margin:0 0 22px}
-  .home-intentions h2{font-size:28px;line-height:1.35;font-weight:400;letter-spacing:-.6px;margin:0 0 20px}
-  .home-intentions ul{padding:0;list-style:none;margin:0}
-  .home-intentions li{font-size:15px;line-height:1.8;color:var(--text-secondary);margin:0}
-  .intentions-note{font-size:12px;line-height:1.75;color:var(--text-secondary);margin:22px 0 9px;max-width:390px}
-  .home-intentions a{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:12px;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:5px}
-  .home-intentions a:hover,.home-intentions a:focus-visible{text-decoration-color:currentColor}
-  @media(max-width:800px){.home-intentions{display:block;padding-top:40px}.home-intentions>div+div{margin-top:48px}.intentions-label{margin-bottom:18px}.home-intentions h2{font-size:28px}.home-intentions li{font-size:15px}}
+  .home-intentions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    padding: 64px 0 0;
+  }
+  .home-intentions > div {
+    min-width: 0;
+  }
+  .intentions-label {
+    font-size: 10px;
+    line-height: 1.7;
+    letter-spacing: 1.1px;
+    color: var(--text-secondary);
+    margin: 0 0 22px;
+  }
+  .home-intentions h2 {
+    font-size: 28px;
+    line-height: 1.35;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+    margin: 0 0 20px;
+  }
+  .home-intentions ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+  }
+  .home-intentions li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .intentions-note {
+    font-size: 12px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin: 22px 0 9px;
+    max-width: 390px;
+  }
+  .home-intentions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 44px;
+    font-size: 12px;
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 5px;
+  }
+  .home-intentions a:hover,
+  .home-intentions a:focus-visible {
+    text-decoration-color: currentColor;
+  }
+  @media (max-width: 800px) {
+    .home-intentions {
+      display: block;
+      padding-top: 40px;
+    }
+    .home-intentions > div + div {
+      margin-top: 48px;
+    }
+    .intentions-label {
+      margin-bottom: 18px;
+    }
+    .home-intentions h2 {
+      font-size: 28px;
+    }
+    .home-intentions li {
+      font-size: 15px;
+    }
+  }
 </style>
