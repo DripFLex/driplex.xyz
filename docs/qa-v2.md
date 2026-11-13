@@ -11,12 +11,12 @@ Revue effectuée le 29 octobre 2026 par un agent distinct des agents d’implém
 
 ## Résultats exécutés
 
-| Contrôle | Résultat |
-|---|---|
-| `npm run lint` | Réussi, code de sortie 0 |
-| `npm test` | 12 tests réussis, dont 6 tests QA indépendants |
+| Contrôle                                   | Résultat                                                                               |
+| ------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `npm run lint`                             | Réussi, code de sortie 0                                                               |
+| `npm test`                                 | 12 tests réussis, dont 6 tests QA indépendants                                         |
 | `ASTRO_TELEMETRY_DISABLED=1 npm run build` | Réussi ; 21 fichiers vérifiés, zéro erreur, avertissement ou hint ; 59 pages statiques |
-| `node --test tests/built.test.mjs` | Réussi ; existence de toutes les pages et de leurs références locales |
+| `node --test tests/built.test.mjs`         | Réussi ; existence de toutes les pages et de leurs références locales                  |
 
 Le JavaScript Training compilé mesure 18,97 ko (4,47 ko gzip). Les calculs purs sont séparés de la validation Zod, qui reste au build. Les polices et icônes sont servies depuis les assets locaux compilés.
 

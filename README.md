@@ -30,7 +30,7 @@ Le build vérifie aussi Astro/TypeScript. `dist/` contient le site statique ; au
 - Navigation Lucide compacte, tooltips desktop et labels mobiles ; aucun JavaScript pour naviguer.
 - Training : année complète en semaines, filtres All/Running/Strength communs au calendrier, aux statistiques et au journal ; détail d’une journée multi-séances et fiches individuelles.
 - Statistiques calculées depuis le JSON : distance/durée, dernières séances, exercices et éventuels records explicitement renseignés. Les valeurs absentes restent signalées comme non renseignées.
-- Pages éditoriales conservées : Home, About, Photography (`/photos/`), Travel (`/map/`), Projects ; Stuff reste accessible dans le footer. Les URLs V1 sont conservées.
+- Pages éditoriales conservées : Home, About, Projects, Photos (`/photos/`), Map (`/map/`) ; Now, Photos, Map et League of Legends sont marquées **Soon** dans le menu (voir [ROADMAP.md](ROADMAP.md)). Stuff reste accessible dans le footer, Library depuis la Home. Les URLs V1 sont conservées.
 
 ## Données de démonstration
 
@@ -44,20 +44,20 @@ Sans JavaScript, le bilan initial 2026 et ses liens de fiches restent lisibles ;
 
 La Home V2.1 est décrite dans [Home V2.1](docs/home-v2.1.md) : composition **Carnet en chapitres** validée, introduction et navigation responsive, contenus locaux conservés. Now, League of Legends et Library disposent de structures minimales. **Library** accueillera livres, films et séries ; son catalogue sera développé ultérieurement. Le lien discret de la Home mène à `/library/`.
 
-| Fichier | Contenu |
-| --- | --- |
-| `src/data/profile.json` | Présentation, liens, objectifs, side quests |
-| `src/data/sessions.json` | Activités structurées et explicitement fictives |
-| `src/lib/data.ts` | Validation Zod/TypeScript et exports de données |
-| `src/lib/training.ts` | Agrégats et calendrier civil UTC, fonctions pures |
-| `src/content/posts/*.md` | Billets Markdown validés et routes `/notes/` |
-| `src/layouts/Layout.astro` | Navigation, polices et structure commune |
-| `src/styles/global.css` | Tokens et style éditorial |
-| `src/styles/training.css` | Mise en page du dashboard sportif |
-| `src/pages/training/` | Dashboard et fiches |
-| `public/cover.svg` | Illustration historique conservée, absente de la Home V2.1 |
+| Fichier                    | Contenu                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| `src/data/profile.json`    | Présentation, liens, objectifs, side quests                |
+| `src/data/sessions.json`   | Activités structurées et explicitement fictives            |
+| `src/lib/data.ts`          | Validation Zod/TypeScript et exports de données            |
+| `src/lib/training.ts`      | Agrégats et calendrier civil UTC, fonctions pures          |
+| `src/content/posts/*.md`   | Billets Markdown validés et routes `/notes/`               |
+| `src/layouts/Layout.astro` | Navigation, polices et structure commune                   |
+| `src/styles/global.css`    | Tokens et style éditorial                                  |
+| `src/styles/training.css`  | Mise en page du dashboard sportif                          |
+| `src/pages/training/`      | Dashboard et fiches                                        |
+| `public/cover.svg`         | Illustration historique conservée, absente de la Home V2.1 |
 
-Photography, Travel et Stuff sont des structures initiales soignées, pas des collections de données réelles. La Home V2.1 n’utilise aucune couverture. Les billets et séances présentés restent des démonstrations explicitement signalées.
+Photos, Map et Stuff sont des structures initiales soignées, pas des collections de données réelles. La Home V2.1 n’utilise aucune couverture. Les billets et séances présentés restent des démonstrations explicitement signalées.
 
 ## Documentation et revue
 

@@ -29,13 +29,13 @@ Strength : `exercises` facultatif ; chaque exercice contient `name`, `sets`, `re
 
 Plusieurs séances par jour, y compris de même discipline, sont possibles. `calendar()` groupe par date et additionne les minutes filtrées. `volumeLevel()` détermine le niveau :
 
-| Niveau | Minutes cumulées | Token |
-| --- | --- | --- |
-| 0 | 0 | `--heat-0` / `#111C2B` |
-| 1 | plus de 0 à moins de 30 | `--heat-1` / `#17345A` |
-| 2 | 30 à moins de 60 | `--heat-2` / `#24548A` |
-| 3 | 60 à moins de 90 | `--heat-3` / `#3475BA` |
-| 4 | 90 et plus | `--heat-4` / `#589BE8` |
+| Niveau | Minutes cumulées        | Token                  |
+| ------ | ----------------------- | ---------------------- |
+| 0      | 0                       | `--heat-0` / `#111C2B` |
+| 1      | plus de 0 à moins de 30 | `--heat-1` / `#17345A` |
+| 2      | 30 à moins de 60        | `--heat-2` / `#24548A` |
+| 3      | 60 à moins de 90        | `--heat-3` / `#3475BA` |
+| 4      | 90 et plus              | `--heat-4` / `#589BE8` |
 
 Seuils fixes, comparables entre années et disciplines. Ils ne représentent ni stress physiologique, ni intensité cardiaque, ni performance.
 
