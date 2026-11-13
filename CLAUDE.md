@@ -19,7 +19,7 @@ Run a single test file: `npx tsx --test tests/home.test.ts`. Optional: `$env:AST
 
 ## Architecture
 
-- **Pages** — `src/pages/`. Each page wraps `src/layouts/Layout.astro`, which provides the header, footer, self-hosted fonts (Fontsource), skip link and `SiteNav`.
+- **Pages** — `src/pages/`. Each page wraps `src/layouts/Layout.astro`, which provides the header, footer, self-hosted fonts (Fontsource), skip link, `SiteNav`, and the canonical URL and Open Graph tags (from `title`/`description`; pass `noindex` to keep a page out of search). `@astrojs/sitemap` builds `sitemap-index.xml` (the 404 is filtered out in `astro.config.mjs`) and `public/robots.txt` points to it.
 - **Navigation** — defined once in `navigation` in `src/lib/home.ts`, rendered by `src/components/SiteNav.astro`. Desktop uses icon links with tooltips; mobile uses a `<details>` menu, so navigation needs no JS. Entries with `soon: true` are dimmed and get a "Soon" badge. To add an icon, update the `NavIcon` type and the `icons` map in `SiteNav.astro`. `/stuff/` is linked only from the footer. `/library/` is linked only from the Home.
 - **Data validation** — Zod parses the local JSON at build time:
   - `src/lib/home.ts` → `src/data/home.json` (name, intro, social links; links must use HTTPS and may be `null`).
