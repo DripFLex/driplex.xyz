@@ -4,7 +4,7 @@
 
 ## Lancement local
 
-Node.js 22.12+ ou 24 LTS et npm. Depuis ce dossier :
+Node.js 22.23.4+ ou 24 LTS et npm. Depuis ce dossier :
 
 ```powershell
 npm ci

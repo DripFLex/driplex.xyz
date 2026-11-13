@@ -18,7 +18,7 @@ test('Home accepts missing social profiles but refuses unsafe URLs and duplicate
   assert.equal(homeSchema.safeParse(home).success, true);
   const [first, ...rest] = home.socials;
   assert.ok(first);
-  for (const url of ['javascript:alert(1)', 'http://example.com/', '/profile/', '#']) {
+  for (const url of ['javascript:alert(1)', 'http://example.com/', '/profile/', '#', 'https:/x']) {
     assert.equal(
       homeSchema.safeParse({ ...home, socials: [{ ...first, url }, ...rest] }).success,
       false,

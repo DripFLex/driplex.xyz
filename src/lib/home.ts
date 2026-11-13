@@ -20,9 +20,7 @@ export const homeSchema = z
             id: z.enum(['instagram', 'linkedin', 'github', 'opgg']),
             label: z.string().min(1),
             url: z
-              .string()
-              .url()
-              .refine((url) => url.startsWith('https://'), 'HTTPS required')
+              .url({ protocol: /^https$/, hostname: z.regexes.domain, error: 'HTTPS URL required' })
               .nullable(),
           })
           .strict(),

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Personal site **driplex.xyz**, built with Astro 5 + TypeScript (strict). Fully static: no backend, no adapter, no auth, no Garmin/Strava sync, no deployment configured. Site content is in English; project docs (`README.md`, `ROADMAP.md`, `docs/`) are in French.
+Personal site **driplex.xyz**, built with Astro 7 + TypeScript (strict). Fully static: no backend, no adapter, no auth, no Garmin/Strava sync, no deployment configured. Site content is in English; project docs (`README.md`, `ROADMAP.md`, `docs/`) are in French.
 
 ## Commands
 
@@ -24,7 +24,7 @@ Run a single test file: `npx tsx --test tests/home.test.ts`. Optional: `$env:AST
 - **Data validation** — Zod parses the local JSON at build time:
   - `src/lib/home.ts` → `src/data/home.json` (name, intro, social links; links must use HTTPS and may be `null`).
   - `src/lib/data.ts` → `src/data/profile.json` and `src/data/sessions.json`. Sessions are a discriminated union on `sport` (`Running` | `Strength`), use `.strict()`, need unique ids and real calendar dates, and **must have `demo: true`**.
-  - Markdown posts: `src/content/posts/*.md`, defined as a collection in `src/content.config.ts` (`title`, `date`, `description`, `tag`) and served at `/notes/[id]`.
+  - Markdown posts: `src/content/posts/*.md`, defined as a collection in `src/content.config.ts` with fields `title`, `date`, `description`, `tag`, and served at `/notes/[id]`. Import `z` from `astro/zod`, not `astro:content` (deprecated in Astro 7).
 - **Training** — `src/pages/training/index.astro` (dashboard) and `src/pages/training/[id].astro` (one page per session). Pure helpers live in `src/lib/training.ts`. The page's client `<script>` imports from `lib/training` and only `import type` from `lib/data`, so Zod never reaches the browser. Keep it that way. The client JS uses the native DOM API only (no framework) and writes data with `textContent`, never as HTML.
 - **Dates** — civil UTC dates (`YYYY-MM-DD`, no time zone). The calendar starts on Monday and pads weeks with `outside` days. `DEMO_TODAY = '2026-10-29'` is the fixed "today". Future dates are excluded from stats and colours. Helpers take `today` as a parameter for tests.
 - **Styles** — `src/styles/global.css` holds the Midnight Navy tokens in `:root` and the editorial styles. `src/styles/training.css` holds the dashboard styles. Use the tokens instead of raw hex values.
