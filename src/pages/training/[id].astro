@@ -7,7 +7,10 @@ export function getStaticPaths() {
 const { session: s } = Astro.props;
 ---
 
-<Layout title={s.title}>
+<Layout
+  title={s.title}
+  description={`${s.sport} · ${s.minutes} min · ${fullDateLabel(s.date)}. A demo session from the DRIPLEX training journal.`}
+>
   <article class="reading">
     <a href="/training/">← All sessions</a>
     <div class="page-heading">

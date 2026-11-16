@@ -2,13 +2,13 @@
 
 Exécutées le 29 octobre 2026 avec Node 24.11.1, npm 11.6.2 et Astro 5.18.2. Voir également le rapport QA indépendant `qa-v2.md`.
 
-| Commande | Résultat |
-| --- | --- |
-| `npm run lint` | Réussi |
-| `npm test` | 12 tests réussis, dont 6 indépendants |
-| `npm run build` | 59 pages statiques ; 21 fichiers vérifiés, zéro erreur/warning/hint |
-| `node --test tests/built.test.mjs` | Réussi : pages et références locales |
-| `git diff --check` | Réussi |
+| Commande                           | Résultat                                                            |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| `npm run lint`                     | Réussi                                                              |
+| `npm test`                         | 12 tests réussis, dont 6 indépendants                               |
+| `npm run build`                    | 59 pages statiques ; 21 fichiers vérifiés, zéro erreur/warning/hint |
+| `node --test tests/built.test.mjs` | Réussi : pages et références locales                                |
+| `git diff --check`                 | Réussi                                                              |
 
 Le bundle JavaScript Training est de 18,97 ko (4,47 ko gzip). Aucune hydratation React ni bibliothèque de calendrier. Polices et icônes locales.
 

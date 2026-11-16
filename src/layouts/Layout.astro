@@ -12,11 +12,16 @@ import SiteNav from '../components/SiteNav.astro';
 interface Props {
   title: string;
   description?: string;
+  /** Keep the page out of search results and the sitemap (e.g. 404). */
+  noindex?: boolean;
 }
 const {
   title,
   description = 'The personal journal of DripleX. Projects, movement and little detours.',
+  noindex = false,
 } = Astro.props;
+const pageTitle = `${title} · driplex.xyz`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -25,7 +30,15 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title} · driplex.xyz</title>
+    <title>{pageTitle}</title>
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="driplex.xyz" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={spaceMedium} as="font" type="font/woff2" crossorigin="anonymous" />
@@ -50,7 +63,7 @@ const {
           driplex.xyz
         </a>
         <span>
-          A journal in motion. <span class="footer-year">© 2026</span>
+          A journal in motion. <span class="footer-year">© {new Date().getUTCFullYear()}</span>
         </span>
         <div class="footer-links">
           <a href="/stuff/">Stuff</a>

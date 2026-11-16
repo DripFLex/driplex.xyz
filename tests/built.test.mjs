@@ -32,3 +32,18 @@ test('toutes les pages générées et leurs liens internes existent', async () =
     }
   }
 });
+
+test('chaque page est indexable avec une URL canonique, sauf la 404', async () => {
+  for (const page of await htmlFiles('dist')) {
+    const html = await readFile(page, 'utf8');
+    if (page.endsWith('404.html')) {
+      assert.match(html, /<meta name="robots" content="noindex"/);
+      continue;
+    }
+    assert.match(html, /<link rel="canonical" href="https:\/\/driplex\.xyz\//, page);
+    assert.match(html, /<meta property="og:title"/, page);
+  }
+  const sitemap = await readFile('dist/sitemap-0.xml', 'utf8');
+  assert.doesNotMatch(sitemap, /404/);
+  assert.match(await readFile('dist/robots.txt', 'utf8'), /Sitemap: https:\/\/driplex\.xyz\//);
+});
