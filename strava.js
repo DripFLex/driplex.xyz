@@ -1,5 +1,5 @@
-// Strava 2026 export (snapshot from 2026-11-23): [date, sport, duration in s, distance in km]
-// shortcut: static snapshot, no auto-sync; live data needs the Strava API + a small OAuth backend
+// Strava 2026 activities: [date, sport, moving time in s, distance in km]
+// ACTIVITIES is rewritten daily by scripts/strava_sync.py (.github/workflows/strava-sync.yml); keep its format.
 const W = 'WeightTraining';
 const ACTIVITIES = [
   ['2026-11-07','Run',2171,5.01],['2026-11-07',W,3337,0],['2026-11-04','Run',1662,3.98],['2026-11-04',W,2854,0],

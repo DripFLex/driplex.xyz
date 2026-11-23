@@ -32,3 +32,5 @@ jobs:
           print('\n'.join(bad) or f'OK: {len(files)} files checked')
           sys.exit(1 if bad else 0)
           EOF
+      - name: Test Strava sync script (offline, fake API)
+        run: python3 scripts/test_strava_sync.py

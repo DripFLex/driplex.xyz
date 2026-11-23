@@ -1,0 +1,31 @@
+name: Strava sync
+
+on:
+  schedule:
+    - cron: '17 5 * * *' # daily, 05:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: strava-sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh strava.js from the Strava API
+        run: python3 scripts/strava_sync.py
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+      - name: Commit if changed
+        run: |
+          git diff --quiet strava.js && { echo 'No change'; exit 0; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898341+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(strava): sync activities' strava.js
+          git push
