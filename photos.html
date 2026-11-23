@@ -3,7 +3,7 @@
 <p class="lead">Some of my favorite photos taken around the world.</p>
 <div id="years"></div>
 <script>
-  // Replace the grey boxes with <img src="..."> once you have photos
+  // Replace the grey boxes with img tags once you have photos
   document.getElementById('years').innerHTML = [['2026','France · Japan',6],['2025','Italy · Morocco',3],['2024','Norway',3]]
     .map(([y,c,n]) => `<h2>${y}</h2><div class="muted data" style="font-size:.8rem">${c}</div><div class="photos">${'<div></div>'.repeat(n)}</div>`).join('');
 </script>
