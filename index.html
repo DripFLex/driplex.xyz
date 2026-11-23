@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>driplex.</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.classList.toggle('light',localStorage.getItem('theme')==='light')}catch(e){}</script></head><body><main>
+<h1>driplex.</h1>
+<p class="lead">Exploring new technologies, sharpening my mind, and building a stronger, healthier body. Occasionally lost in <a class="hl" href="stuff.html">a good story</a>.</p>
+<div class="social"><a href="https://www.instagram.com/philippehenn/">Instagram</a><a href="https://www.linkedin.com/in/philippe-hennericy-1505a3288/">LinkedIn</a><a href="https://github.com/DripFLex">GitHub</a><a href="https://op.gg/fr/lol/summoners/euw/BIG%20DRIP-EXXD">OP.GG</a></div>
+<div class="label">Recently updated</div>
+<ul class="rows"><li><a href="blog.html"><span class="t">First post</span><span class="fill"></span><span class="d">Oct 22, 2026</span></a></li><li><a href="blog.html"><span class="t">How I built this site</span><span class="fill"></span><span class="d">Mar 10, 2026</span></a></li><li><a href="blog.html"><span class="t">Things I learned</span><span class="fill"></span><span class="d">Aug 20, 2025</span></a></li></ul>
+<a class="more" href="blog.html">All posts →</a>
+<div class="split">
+  <div>
+    <div class="label">Latest training</div>
+    <a class="activity" href="training.html" id="lastAct"></a>
+    <script src="strava.js"></script>
+    <script>{ const a = ACTIVITIES[0]; document.getElementById('lastAct').innerHTML = `<span class="ic">${sportIcon(a[1])}</span><span><b>${sportName(a[1])}</b><br><span class="muted data" style="font-size:.8rem">${actLine(a)}</span></span>`; }</script>
+  </div>
+  <div>
+    <div class="label">2026 reading</div>
+    <div class="books"><div class="book">Book 1</div><div class="book">Book 2</div><div class="book">Book 3</div><div class="book">Book 4</div></div>
+    <a class="more" href="stuff.html">All books →</a>
+  </div>
+</div>
+<div class="label">2026 goals</div>
+<ul class="rows"><li><div><span class="t">Run consistently</span><span class="fill"></span><span class="d"></span></div></li><li><div><span class="t">Make time for strength</span><span class="fill"></span><span class="d"></span></div></li><li><div><span class="t">Write more often</span><span class="fill"></span><span class="d"></span></div></li></ul>
+<a class="more" href="stuff.html">View all goals →</a>
+<div class="label">Side quests</div>
+<ul class="rows"><li><div><span class="t"><span class="check">○</span>Build my own corner of the web</span><span class="fill"></span><span class="d">In progress</span></div></li><li><div><span class="t"><span class="check">○</span>Spend a day without an itinerary</span><span class="fill"></span><span class="d"></span></div></li><li><div><span class="t"><span class="check">○</span>Fill a journal with photos</span><span class="fill"></span><span class="d"></span></div></li></ul>
+</main><script src="nav.js"></script></body></html>

@@ -15,17 +15,20 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    env:
-      ASTRO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm run format:check
-      - run: npm run lint
-      - run: npm test
-      - run: npm run build
-      - run: node --test tests/built.test.mjs
+      # Static site, no build: check every local href/src points to a file that exists.
+      - name: Check internal links
+        run: |
+          python3 - <<'EOF'
+          import pathlib, re, sys
+          bad = []
+          files = sorted(pathlib.Path('.').glob('*.html')) + [pathlib.Path('nav.js')]
+          for f in files:
+              text = f.read_text(encoding='utf-8')
+              for ref in re.findall(r'''(?:href|src)=["']([^"'#]+)''', text) + re.findall(r"\['([\w-]+\.html)'", text):
+                  if '${' not in ref and not re.match(r'(https?:|mailto:|//)', ref) and not pathlib.Path(ref).exists():
+                      bad.append(f'{f}: {ref}')
+          print('\n'.join(bad) or f'OK: {len(files)} files checked')
+          sys.exit(1 if bad else 0)
+          EOF

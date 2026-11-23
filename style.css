@@ -1,0 +1,93 @@
+/* Dark is the default so it paints without JS; nav.js adds .light when chosen */
+:root {
+  --bg: #191919; --bg-sidebar: #202020; --bg-hover: #2a2a2a;
+  --text-primary: #D4D4D4; --text-secondary: #8b8b8b; --border: #2f2f2f;
+  --highlight: #4a3b1e; --accent-line: #9A7734;
+  --t0: #262626; --t1: #4a3220; --t2: #8a5a2b; --t3: #c47a3a; --t4: #f0a055;
+  --serif: Iowan, "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, Palatino, Georgia, serif;
+  --data: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+:root.light {
+  --bg: #FFFFFF; --bg-sidebar: #F1F1EF; --bg-hover: #EFEFEF;
+  --text-primary: #373530; --text-secondary: #787774; --border: #E1E1DF;
+  --highlight: #F0DFBC; --accent-line: #C89A3C;
+  --t0: #EFEFEF; --t1: #f5e6d3; --t2: #e8b880; --t3: #d4854a; --t4: #b85a1b;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text-primary); font-family: var(--serif); line-height: 1.6; font-size: 16px; }
+a { color: inherit; }
+main { max-width: 640px; margin: 0 auto; padding: 72px 16px 120px; }
+h1 { font-size: 2rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
+h2 { font-size: 1.25rem; margin: 2.5rem 0 .75rem; }
+.lead { color: var(--text-secondary); margin: 0 0 2rem; }
+.muted { color: var(--text-secondary); }
+.data { font-family: var(--data); }
+
+/* Marker-style highlighted link */
+.hl { background: var(--highlight); padding: 0 .2em; border-radius: 3px; text-decoration: none; }
+.u { text-decoration: underline; text-decoration-color: var(--accent-line); text-underline-offset: 3px; }
+
+/* Section labels */
+.label { font-family: var(--data); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-secondary); margin: 3rem 0 1rem; }
+
+/* Title ........ date rows */
+.rows { list-style: none; padding: 0; margin: 0; }
+.rows a, .rows li > div { display: flex; align-items: baseline; gap: .75rem; padding: .45rem 0; text-decoration: none; }
+.rows .t { font-weight: 600; }
+.rows .fill { flex: 1; border-bottom: 1px dotted var(--border); transform: translateY(-4px); }
+.rows .d { font-family: var(--data); font-size: .8rem; color: var(--text-secondary); white-space: nowrap; }
+.rows .d.i { font-family: var(--serif); font-style: italic; }
+.rows a:hover .t { text-decoration: underline; text-decoration-color: var(--accent-line); }
+
+.more { display: inline-block; margin-top: .75rem; color: var(--text-secondary); text-decoration: none; font-size: .9rem; }
+.more:hover { color: var(--text-primary); }
+
+.social { display: flex; flex-wrap: wrap; gap: 1rem; font-family: var(--data); font-size: .85rem; color: var(--text-secondary); }
+.social a { text-decoration: none; }
+.social a:hover { color: var(--text-primary); }
+
+/* Sidebar */
+.rail { position: fixed; left: 0; top: 0; height: 100%; width: 80px; display: flex; align-items: center; justify-content: center; z-index: 40; }
+.rail-panel { display: flex; flex-direction: column; gap: 4px; padding: 12px 8px; border-radius: 16px; background: var(--bg-sidebar); border: 1px solid var(--border); }
+.rail a, .rail button { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; color: var(--text-secondary); background: none; border: 0; cursor: pointer; }
+.rail a:hover, .rail button:hover, .rail a.on { background: var(--bg-hover); color: var(--text-primary); }
+.rail svg { width: 22px; height: 22px; }
+.rail .sep { height: 1px; background: var(--border); margin: 6px 4px; }
+.rail a::after { content: attr(aria-label); position: absolute; left: 52px; font-family: var(--data); font-size: .7rem; letter-spacing: .08em; background: var(--text-primary); color: var(--bg); padding: 2px 8px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .15s; white-space: nowrap; }
+.rail a:hover::after { opacity: 1; }
+@media (max-width: 767px) {
+  .rail { top: auto; bottom: 12px; height: auto; width: 100%; }
+  .rail-panel { flex-direction: row; }
+  .rail .sep { width: 1px; height: auto; margin: 4px 6px; }
+  .rail a::after { display: none; }
+}
+
+/* Home: training + books */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 640px) { .split { grid-template-columns: 1fr; } }
+.activity { display: flex; gap: .75rem; align-items: center; text-decoration: none; }
+.activity .ic { width: 32px; height: 32px; border-radius: 8px; background: var(--bg-hover); display: grid; place-items: center; }
+.books { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.book { aspect-ratio: 2/3; border-radius: 3px; background: var(--bg-hover); border: 1px solid var(--border); padding: 6px; font-size: .65rem; line-height: 1.2; display: flex; align-items: flex-end; }
+.check { color: var(--t3); margin-right: .5rem; }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: .75rem 0 2rem; }
+.photos div { aspect-ratio: 1; border-radius: 6px; background: var(--bg-hover); }
+
+/* Training */
+.stats { display: flex; flex-wrap: wrap; gap: 2rem; margin: 1.5rem 0; font-family: var(--data); }
+.stats b { display: block; font-size: 1.1rem; }
+.stats span { font-size: .65rem; letter-spacing: .1em; color: var(--text-secondary); }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: 1fr; gap: 2px; }
+.heat i { aspect-ratio: 1; border-radius: 2px; background: var(--t0); }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; }
+
+/* Map */
+#map { position: fixed; inset: 0; background: var(--bg); }
+:root:not(.light) #map .leaflet-tile-pane { filter: invert(1) grayscale(1) brightness(.8) contrast(.9); }
+.map-stats { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 500; display: flex; gap: 1.5rem; background: var(--bg-sidebar); border: 1px solid var(--border); border-radius: 12px; padding: .6rem 1.2rem; font-family: var(--data); }
+.map-stats b { font-family: var(--serif); font-size: 1.2rem; display: block; }
+.map-stats span { font-size: .6rem; letter-spacing: .1em; color: var(--text-secondary); }
+@media (max-width: 767px) { .map-stats { bottom: 84px; } } /* clear the bottom nav on phones */
