@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Photos</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.classList.toggle('light',localStorage.getItem('theme')==='light')}catch(e){}</script></head><body><main>
+<h1>Photos</h1>
+<p class="lead">Some of my favorite photos taken around the world.</p>
+<div id="years"></div>
+<script>
+  // Replace the grey boxes with img tags once you have photos
+  document.getElementById('years').innerHTML = [['2026','France · Japan',6],['2025','Italy · Morocco',3],['2024','Norway',3]]
+    .map(([y,c,n]) => `<h2>${y}</h2><div class="muted data" style="font-size:.8rem">${c}</div><div class="photos">${'<div></div>'.repeat(n)}</div>`).join('');
+</script>
+</main><script src="nav.js"></script></body></html>

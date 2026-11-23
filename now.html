@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Now</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.classList.toggle('light',localStorage.getItem('theme')==='light')}catch(e){}</script></head><body><main>
+<h1>What I'm doing now</h1>
+<p class="muted">This is a <a class="u" href="https://nownownow.com/about">now page</a>. Last updated: November 2026</p>
+<h2>driplex.xyz</h2>
+<p>Building my own corner of the web, starting from a blank page: projects, training and things noticed along the way.</p>
+<h2>Training</h2>
+<p>Running and strength training have become part of how I challenge myself. Consistency matters more than perfection. Check out my <a class="u" href="training.html">training</a> and <a class="u" href="stuff.html">goals</a>.</p>
+<div class="label">At a glance</div>
+<ul class="rows"><li><div><span class="t">Last trained</span><span class="fill"></span><span class="d" id="lastTrained"></span></div></li></ul>
+<script src="strava.js"></script>
+<script>document.getElementById('lastTrained').textContent = sportName(ACTIVITIES[0][1]) + ' · ' + actLine(ACTIVITIES[0]);</script>
+</main><script src="nav.js"></script></body></html>

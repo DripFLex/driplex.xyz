@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Training</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"><link rel="stylesheet" href="style.css"><script>try{document.documentElement.classList.toggle('light',localStorage.getItem('theme')==='light')}catch(e){}</script></head><body><main>
+<h1>2026 Training</h1>
+<p class="lead">Training log · imported from Strava</p>
+<div class="stats" id="stats"></div>
+<div class="label" id="count"></div>
+<div class="heat" id="heat"></div>
+<div class="muted data" style="font-size:.7rem;margin-top:.5rem">Less <i class="sw" style="background:var(--t0)"></i><i class="sw" style="background:var(--t1)"></i><i class="sw" style="background:var(--t2)"></i><i class="sw" style="background:var(--t3)"></i><i class="sw" style="background:var(--t4)"></i> More</div>
+<div class="label">Latest sessions</div>
+<ul class="rows" id="last"></ul>
+<script src="strava.js"></script>
+<script>
+  const A = ACTIVITIES.filter(a => a[0].startsWith('2026-')), sum = f => A.reduce((s, a) => s + f(a), 0);
+  const runs = A.filter(a => a[1] === 'Run');
+  document.getElementById('stats').innerHTML = [
+    [A.length, 'SESSIONS'], [Math.round(sum(a => a[2]) / 3600) + 'h', 'TOTAL TIME'],
+    [Math.round(runs.reduce((s, a) => s + a[3], 0)) + 'km', 'RUNNING'], [A.filter(a => a[1] === 'WeightTraining').length, 'STRENGTH'],
+  ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
+  document.getElementById('count').textContent = A.length + ' activities in 2026';
+
+  // Minutes per day -> 5 colour levels, weeks from Mon 2025-12-29 to 2026-12-31
+  const perDay = {}; A.forEach(([d, , t]) => perDay[d] = (perDay[d] || 0) + t / 60);
+  const today = new Date().toLocaleDateString('en-CA'), // local date, not UTC
+        start = new Date('2025-12-29T12:00'), cells = [];
+  for (let i = 0; i < 53 * 7; i++) {
+    const d = new Date(start); d.setDate(d.getDate() + i);
+    const k = d.toISOString().slice(0, 10), m = perDay[k] || 0;
+    const l = !m ? 0 : m < 30 ? 1 : m < 60 ? 2 : m < 90 ? 3 : 4;
+    cells.push(`<i title="${k}${m ? ' · ' + Math.round(m) + ' min' : ''}" style="background:var(--t${l});${k > today ? 'opacity:.35' : ''}"></i>`);
+  }
+  document.getElementById('heat').innerHTML = cells.join('');
+  document.getElementById('last').innerHTML = A.slice(0, 10).map(a =>
+    `<li><div><span class="t">${sportIcon(a[1])} ${sportName(a[1])}</span><span class="fill"></span><span class="d">${actLine(a)}</span></div></li>`).join('');
+</script>
+</main><script src="nav.js"></script></body></html>
